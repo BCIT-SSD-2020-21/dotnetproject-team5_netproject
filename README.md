@@ -43,6 +43,6 @@
 - setting categories - CRUD functionality (allow users to create their own categories)
 
 ## Prototypes
-[Mockup](https://www.figma.com/file/EB3Le3jVcVPCVfBKg707GL/Virtual-Clothing?node-id=0%3A1) 
+[Mockup](https://www.figma.com/file/EB3Le3jVcVPCVfBKg707GL/Virtual-Clothing?node-id=0%3A1){:target="_blank"}
 
 ## ERD
