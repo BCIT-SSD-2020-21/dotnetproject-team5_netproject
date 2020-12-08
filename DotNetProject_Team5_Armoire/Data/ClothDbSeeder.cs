@@ -1,7 +1,8 @@
-﻿using System;
+﻿using DotNetProject_Team5_Armoire.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace DotNetProject_Team5_Armoire.Data
 {
@@ -21,12 +22,12 @@ namespace DotNetProject_Team5_Armoire.Data
             {
                 return new List<Cloth>()
                 {   //in sequence of userid, name, isclean, picture, categoryid
-                    new Cloth(1,"Crop Top",1,"/images/tops/croptop.jpg",1),
-                    new Cloth(1,"T-shirt",1,"/images/tops/tshirt.jpg",1),
-                    new Cloth(2,"Shirt",1,"/images/tops/shirt.jpg",1),
-                    new Cloth(2,"Straight Pants",1,"/images/bottoms/pant.jpg",2),
-                    new Cloth(2,"Jeans",1,"/images/bottoms/jeans.jpg",2),
-                    new Cloth(1,"Sweatpants",1,"/images/bottoms/sweatpants.jpg",2),
+                    new Cloth(1,"Crop Top",false,"/images/tops/croptop.jpg",1),
+                    new Cloth(1,"T-shirt",true,"/images/tops/tshirt.jpg",1),
+                    new Cloth(2,"Shirt",true,"/images/tops/shirt.jpg",1),
+                    new Cloth(2,"Straight Pants",false,"/images/bottoms/pant.jpg",2),
+                    new Cloth(2,"Jeans",true,"/images/bottoms/jeans.jpg",2),
+                    new Cloth(1,"Sweatpants",false,"/images/bottoms/sweatpants.jpg",2),
                 };
             }
         }
