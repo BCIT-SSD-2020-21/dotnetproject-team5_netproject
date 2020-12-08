@@ -9,7 +9,7 @@ namespace DotNetProject_Team5_Armoire.Models
     {
         public string Name { get; private set; }
 
-        public Category(Guid id, string name)
+        public Category (string name)
         {
             Name = name;
         }
