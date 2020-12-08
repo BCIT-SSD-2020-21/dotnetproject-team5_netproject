@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DotNetProject_Team5_Armoire.Data.Cloth.Migrations
 {
     [DbContext(typeof(ClothDbContext))]
-    [Migration("20201208200755_InitialClothSchema")]
+    [Migration("20201208215353_InitialClothSchema")]
     partial class InitialClothSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,7 +35,7 @@ namespace DotNetProject_Team5_Armoire.Data.Cloth.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("DotNetProject_Team5_Armoire.Models.Cloth", b =>
+            modelBuilder.Entity("DotNetProject_Team5_Armoire.Models.Clothing", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

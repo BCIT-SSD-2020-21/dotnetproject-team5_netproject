@@ -33,7 +33,7 @@ namespace DotNetProject_Team5_Armoire.Data.Cloth.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("DotNetProject_Team5_Armoire.Models.Cloth", b =>
+            modelBuilder.Entity("DotNetProject_Team5_Armoire.Models.Clothing", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
