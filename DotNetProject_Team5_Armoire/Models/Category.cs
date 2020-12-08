@@ -9,6 +9,7 @@ namespace DotNetProject_Team5_Armoire.Models
     {
         public string Name { get; private set; }
 
+        public virtual ICollection<Clothing> TypeClothings { get; set; }
         public Category (string name)
         {
             Name = name;
