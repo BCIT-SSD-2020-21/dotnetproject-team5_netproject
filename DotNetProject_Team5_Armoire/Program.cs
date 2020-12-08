@@ -23,7 +23,6 @@ namespace DotNetProject_Team5_Armoire
                 try
                 {
                     var db = services.GetRequiredService<ClothDbContext>();
-                    await CategoryDbSeeder.SeedAsync(db);
                     await ClothingDbSeeder.SeedAsync(db);
 
                 }
