@@ -46,4 +46,4 @@
 [Mockup](https://www.figma.com/file/EB3Le3jVcVPCVfBKg707GL/Virtual-Clothing?node-id=0%3A1)
 
 ## ERD
-![](https://i.imgur.com/q0INqfu.png)
+![](https://i.imgur.com/k2qNZXA.png)
