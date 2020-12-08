@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace DotNetProject_Team5_Armoire.Models
 {
-    public class BaseEntity
+    public abstract class BaseEntity
     {
+        public virtual int Id { get; protected set; }
     }
 }
