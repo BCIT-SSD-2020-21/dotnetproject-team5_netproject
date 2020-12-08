@@ -18,16 +18,16 @@ namespace DotNetProject_Team5_Armoire.Data
                 await clothcontext.SaveChangesAsync();
             }
 
-            static Enumerable<Cloth> GetPreconfiguredItems()
+            static IEnumerable<Clothing> GetPreconfiguredItems()
             {
-                return new List<Cloth>()
+                return new List<Clothing>()
                 {   //in sequence of userid, name, isclean, picture, categoryid
-                    new Cloth(1,"Crop Top",false,"/images/tops/croptop.jpg",1),
-                    new Cloth(1,"T-shirt",true,"/images/tops/tshirt.jpg",1),
-                    new Cloth(2,"Shirt",true,"/images/tops/shirt.jpg",1),
-                    new Cloth(2,"Straight Pants",false,"/images/bottoms/pant.jpg",2),
-                    new Cloth(2,"Jeans",true,"/images/bottoms/jeans.jpg",2),
-                    new Cloth(1,"Sweatpants",false,"/images/bottoms/sweatpants.jpg",2),
+                    new Clothing("1","Crop Top",false,"/images/tops/croptop.jpg",1),
+                    new Clothing("1","T-shirt",true,"/images/tops/tshirt.jpg",1),
+                    new Clothing("2","Shirt",true,"/images/tops/shirt.jpg",1),
+                    new Clothing("2","Straight Pants",false,"/images/bottoms/pant.jpg",2),
+                    new Clothing("2","Jeans",true,"/images/bottoms/jeans.jpg",2),
+                    new Clothing("1","Sweatpants",false,"/images/bottoms/sweatpants.jpg",2),
                 };
             }
         }

@@ -19,7 +19,7 @@ namespace DotNetProject_Team5_Armoire.Data
                 await clothcontext.SaveChangesAsync();
             }
 
-            static Enumerable<Category> GetPreconfiguredItems()
+            static IEnumerable<Category> GetPreconfiguredItems()
             {
                 return new List<Category>()
                 {
