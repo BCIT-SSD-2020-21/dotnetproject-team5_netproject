@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace DotNetProject_Team5_Armoire.Data
 {
-    public class ClothDbSeeder
+    public class ClothingDbSeeder
     {
         public static async Task SeedAsync(ClothDbContext clothcontext)
         {
