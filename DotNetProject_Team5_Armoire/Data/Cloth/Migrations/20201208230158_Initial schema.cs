@@ -2,7 +2,7 @@
 
 namespace DotNetProject_Team5_Armoire.Data.Cloth.Migrations
 {
-    public partial class InitialClothSchema : Migration
+    public partial class Initialschema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,7 +26,7 @@ namespace DotNetProject_Team5_Armoire.Data.Cloth.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OwnerId = table.Column<string>(nullable: true),
-                    ClothName = table.Column<string>(nullable: true),
+                    ClothName = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     IsClean = table.Column<bool>(nullable: false),
                     PictureUri = table.Column<string>(nullable: true),
                     CategoryId = table.Column<int>(nullable: false)
@@ -34,16 +34,27 @@ namespace DotNetProject_Team5_Armoire.Data.Cloth.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Clothes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Clothes_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Clothes_CategoryId",
+                table: "Clothes",
+                column: "CategoryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Clothes");
 
             migrationBuilder.DropTable(
-                name: "Clothes");
+                name: "Categories");
         }
     }
 }
