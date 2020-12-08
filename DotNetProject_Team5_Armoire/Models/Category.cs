@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DotNetProject_Team5_Armoire.Models
 {
-    public class Category:BaseEntity
+    public class Category : BaseEntity
     {
         public string Name { get; private set; }
 

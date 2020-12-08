@@ -15,7 +15,7 @@ namespace DotNetProject_Team5_Armoire.Data
 
         }
 
-        public DbSet<Cloth> Clothes { get; set; }
+        public DbSet<Clothing> Clothes { get; set; }
 
         public DbSet<Category> Categories { get; set; } 
     }
