@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using System;
 
 namespace DotNetProject_Team5_Armoire.Data
 {
@@ -10,13 +11,6 @@ namespace DotNetProject_Team5_Armoire.Data
     {
         public static async Task SeedAsync(ClothDbContext db)
         {
-            if (!await db.Categories.AnyAsync())
-            {
-                await db.Categories.AddRangeAsync(
-                    GetPreconfiguredCategories());
-
-                await db.SaveChangesAsync();
-            }
             if (!await db.Clothes.AnyAsync())
             {
                 await db.Clothes.AddRangeAsync(
@@ -38,14 +32,7 @@ namespace DotNetProject_Team5_Armoire.Data
                 };
             }
 
-            static IEnumerable<Category> GetPreconfiguredCategories()
-            {
-                return new List<Category>()
-                {
-                    new Category("Tops"),
-                    new Category("Bottoms")
-                };
-            }
+            
         }
     }
 }
