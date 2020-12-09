@@ -84,22 +84,3 @@ body {
     text-align: center;
     color: white;
 }
-
-.register-page {
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../images/register-lg.jpg");
-    background-size: cover;
-    min-height: 100vh;
-}
-
-.register-form {
-    background-color: rgba(255, 255, 255,0.6);
-}
-
-a {
-    color: white;
-}
-
-a:hover{
-           text-decoration:none;
-           color:black;
-       }
