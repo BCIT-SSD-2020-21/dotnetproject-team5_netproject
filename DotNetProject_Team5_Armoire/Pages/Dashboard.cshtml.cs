@@ -12,21 +12,17 @@ namespace DotNetProject_Team5_Armoire.Pages
 {
     public class DashboardModel : PageModel
     {
-        // access database
+
+        //Access database
         protected readonly ClothDbContext db;
-
         public IQueryable<Clothing> Clothes { get; set; }
-
         public DashboardModel(ClothDbContext db)
         {
             this.db = db;
         }
+
         public void OnGet()
         {
-            // get user clothes
-            // find the clothes that have the current users id
-            
-            // Get User id 
             string userId;
 
             if (User.Identity.IsAuthenticated)
@@ -35,8 +31,10 @@ namespace DotNetProject_Team5_Armoire.Pages
                 Clothes = db.Clothes
                     .Where(c => c.OwnerId == userId);
             }
+                else 
+            {
+                return;
+            }
         }
-
-
     }
 }
