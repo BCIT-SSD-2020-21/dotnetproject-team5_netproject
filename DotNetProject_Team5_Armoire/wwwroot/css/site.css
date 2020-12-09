@@ -84,3 +84,8 @@ body {
     text-align: center;
     color: white;
 }
+
+/*Dashboard Table*/
+.table-container {
+    padding: 100px 100px;
+}
