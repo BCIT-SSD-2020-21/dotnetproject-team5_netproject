@@ -7,6 +7,7 @@ using DotNetProject_Team5_Armoire.Data;
 using DotNetProject_Team5_Armoire.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotNetProject_Team5_Armoire.Pages
 {
@@ -30,10 +31,7 @@ namespace DotNetProject_Team5_Armoire.Pages
                 userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 Clothes = db.Clothes
                     .Where(c => c.OwnerId == userId);
-            }
-                else 
-            {
-                return;
+                    
             }
         }
     }

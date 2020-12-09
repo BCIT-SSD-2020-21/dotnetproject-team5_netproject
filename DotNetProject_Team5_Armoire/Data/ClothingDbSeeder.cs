@@ -13,10 +13,12 @@ namespace DotNetProject_Team5_Armoire.Data
         {
             if (!await db.Clothes.AnyAsync())
             {
+               
                 await db.Clothes.AddRangeAsync(
                     GetPreconfiguredItems());
 
                 await db.SaveChangesAsync();
+
             }
 
             static IEnumerable<Clothing> GetPreconfiguredItems()
