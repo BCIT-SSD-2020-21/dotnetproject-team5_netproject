@@ -3,37 +3,50 @@
 @{
     <div class="table-container">
         <h2>Your Closet</h2>
+        <button><a asp-page="/AddItem/Index">Add Item</a></button>
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Ticket Details</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Clothing</th>
                     <th scope="col">Category</th>
-                    <th scope="col">Last Washed</th>
+                    <th scope="col">Cleanliness</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">Image</th>
-                    <td>Read Sweater</td>
-                    <td>May 26th, 2019</td>
-                    <td><button type="button" class="btn btn-warning">Edit</button></td>
-                    <td><button type="button" class="btn btn-danger">Delete</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">Image</th>
-                    <td>Read Sweater</td>
-                    <td>May 26th, 2019</td>
-                    <td><button type="button" class="btn btn-warning">Edit</button></td>
-                    <td><button type="button" class="btn btn-danger">Delete</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">Image</th>
-                    <td>Read Sweater</td>
-                    <td>May 26th, 2019</td>
-                    <td><button type="button" class="btn btn-warning">Edit</button></td>
-                    <td><button type="button" class="btn btn-danger">Delete</button></td>
-                </tr>
+            
+                @if(Model.Clothes != null && Model.Clothes.Any())
+                {
+
+                    @foreach (var product in Model.Clothes)
+                    {
+                        <tr>
+                        <td><img src=@product.PictureUri /></td>
+                        <td>@product.ClothName</td>
+
+                    @if(product.CategoryId == 1)
+                    {
+                        <td>Top</td>
+                    }
+                    else
+                    {
+                        <td>Bottom</td>
+                    }
+
+                    @if (@product.IsClean)
+                    {
+                        <td>Clean</td>
+                    }
+                    else
+                    {
+                        <td>Not Clean</td>
+                    }
+                        <td><button type="button" class="btn btn-warning">Edit</button></td>
+                        <td><button type="button" class="btn btn-danger">Delete</button></td>
+                    </tr>
+                    }
+                }
             </tbody>
         </table>
     </div>
