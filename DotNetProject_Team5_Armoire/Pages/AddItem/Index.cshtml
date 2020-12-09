@@ -1,24 +1,21 @@
 ﻿@page
 @model DotNetProject_Team5_Armoire.Pages.AddItem.IndexModel
-@{
-}
-
 
 <h1>Add New Item</h1>
 <form asp-page="/AddItem/Index" method="post">
     <div class="form-group">
         <label for="clothingName">Clothing Name</label>
-        <input type="text" class="form-control" id="clothingName" aria-describedby="emailHelp" placeholder="Clothing Name">
+        <input type="text" class="form-control" id="clothingName" name="clothingName" aria-describedby="emailHelp" placeholder="Clothing Name">
     </div>
     <div class="form-group">
         <label for="exampleFormControlSelect1">Choose Category</label>
-        <select class="form-control" id="exampleFormControlSelect1">
+        <select class="form-control" name="category" id="exampleFormControlSelect1">
             <option>Top</option>
             <option>Bottom</option>
         </select>
     </div>
     <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="isClean" value="true">
         <label class="form-check-label" for="exampleCheck1">Clean</label>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
