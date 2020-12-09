@@ -23,18 +23,17 @@ namespace DotNetProject_Team5_Armoire.Pages.AddItem
             this.db = db;
         }
 
-        public Clothing clothing { get; set; }
-
         public void OnGet()
         {
             
         }
 
-        public IActionResult OnPost(string clothingName, string category, bool isClean = false)
+        public IActionResult OnPost(string clothingName, string category, string imageUri, bool isClean = false)
         {
-            // When the post request is made we want to create a new Cloth
-
+            // get UserId
             string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            // set CategoryId
             int categoryId;
             
             switch (category)
@@ -50,12 +49,11 @@ namespace DotNetProject_Team5_Armoire.Pages.AddItem
                     break;
             }
 
-            Clothing clothing = new Clothing(userId, clothingName, isClean, "newImages", categoryId);
+            // Create new clothing object and save it to database
+            Clothing clothing = new Clothing(userId, clothingName, isClean, imageUri, categoryId);
             db.Clothes.Add(clothing);
             db.SaveChanges();
 
-
-            // SaveChanges to Database
             return RedirectToPage();
         }
     }
