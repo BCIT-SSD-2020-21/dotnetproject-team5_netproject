@@ -22,9 +22,9 @@ namespace DotNetProject_Team5_Armoire
                 var loggerFactory = services.GetRequiredService<ILoggerFactory>();
                 try
                 {
-                    var db = services.GetRequiredService<ClothDbContext>();
-                    await CategoryDbSeeder.SeedAsync(db);
-                    await ClothingDbSeeder.SeedAsync(db);
+                    var dbCategory = services.GetRequiredService<ClothDbContext>();
+                    await CategoryDbSeeder.SeedAsync(dbCategory); 
+                    
 
                 }
                 catch (Exception e)

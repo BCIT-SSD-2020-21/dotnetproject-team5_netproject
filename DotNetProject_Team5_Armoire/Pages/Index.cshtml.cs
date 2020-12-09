@@ -21,11 +21,11 @@ namespace DotNetProject_Team5_Armoire.Pages
         }
 
         public List<Category> Categories = new List<Category>();
-        public List<Clothing> Clothes = new List<Clothing>();
+        //public List<Clothing> Clothes = new List<Clothing>();
         public async Task OnGet()
         {
             Categories = await _db.Categories.ToListAsync();
-            Clothes = await _db.Clothes.ToListAsync();
+            //Clothes = await _db.Clothes.ToListAsync();
         }
     }
 }
