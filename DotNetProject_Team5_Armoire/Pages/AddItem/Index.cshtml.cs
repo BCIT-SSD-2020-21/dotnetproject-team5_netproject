@@ -5,11 +5,14 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using DotNetProject_Team5_Armoire.Data;
 using DotNetProject_Team5_Armoire.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DotNetProject_Team5_Armoire.Pages.AddItem
 {
+    
+    [Authorize]
     public class IndexModel : PageModel
     {
         // connect to database
