@@ -44,7 +44,8 @@ namespace DotNetProject_Team5_Armoire.Data.Cloth.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ClothName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("IsClean")
                         .HasColumnType("bit");
@@ -57,7 +58,18 @@ namespace DotNetProject_Team5_Armoire.Data.Cloth.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Clothes");
+                });
+
+            modelBuilder.Entity("DotNetProject_Team5_Armoire.Models.Clothing", b =>
+                {
+                    b.HasOne("DotNetProject_Team5_Armoire.Models.Category", "Category")
+                        .WithMany("TypeClothings")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -24,7 +24,7 @@ namespace DotNetProject_Team5_Armoire
                 {
                     var db = services.GetRequiredService<ClothDbContext>();
                     await CategoryDbSeeder.SeedAsync(db);
-                    await ClothDbSeeder.SeedAsync(db);
+                    await ClothingDbSeeder.SeedAsync(db);
 
                 }
                 catch (Exception e)
