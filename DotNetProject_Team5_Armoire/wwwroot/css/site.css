@@ -85,21 +85,7 @@ body {
     color: white;
 }
 
-.login-form {
-    background: rgba(255,255,255,0.7);
-}
-
-.login-page {
-    background: url("../images/login-lg.jpg");
-    background-size: cover;
-    min-height: 100vh;
-}
-
-a{
-    color:#FFF;
-}
-
-a:hover {
-    text-decoration:none;
-    color: #000;
+/*Dashboard Table*/
+.table-container {
+    padding: 100px 100px;
 }
