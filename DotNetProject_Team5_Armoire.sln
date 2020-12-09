@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetProject_Team5_Armoire", "DotNetProject_Team5_Armoire\DotNetProject_Team5_Armoire.csproj", "{A59B580A-ACFD-4F6D-ACB5-96FB52907AFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetProject_Team5_Armoire", "DotNetProject_Team5_Armoire\DotNetProject_Team5_Armoire.csproj", "{A59B580A-ACFD-4F6D-ACB5-96FB52907AFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
