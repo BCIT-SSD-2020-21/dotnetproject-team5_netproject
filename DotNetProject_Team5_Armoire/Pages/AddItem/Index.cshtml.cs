@@ -30,6 +30,9 @@ namespace DotNetProject_Team5_Armoire.Pages.AddItem
 
         public IActionResult OnPost(string clothingName, string category, string imageUri, bool isClean = false)
         {
+            // Set 2 seconds delay
+            System.Threading.Thread.Sleep(2000);
+
             // get UserId
             string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
@@ -54,7 +57,7 @@ namespace DotNetProject_Team5_Armoire.Pages.AddItem
             db.Clothes.Add(clothing);
             db.SaveChanges();
 
-            return RedirectToPage();
+            return Redirect("/ItemAddedNotification/Index");
         }
     }
 }
