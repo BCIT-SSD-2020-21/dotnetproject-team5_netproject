@@ -1,9 +1,23 @@
 ﻿@page
 @model IndexModel
-@foreach (var product in Model.Categories)
-{
-    <div>
-        <span>@product.Name</span>
-    </div>
-    
+@{
+    ViewData["Title"] = "Home page";
 }
+
+<div class="landing">
+    <!-- Navbar to go here -->
+
+    <div class="welcome-wrapper">
+        <div>
+            Welcome to
+            <h1>Armoire</h1>
+        </div>
+        <div style="display: inline">
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a> | <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </div>
+        <button>
+            <a class="nav-link" asp-area="Identity" asp-page="/Pages/Carousel">Carousel</a>
+        </button>
+    </div>
+
+</div>
