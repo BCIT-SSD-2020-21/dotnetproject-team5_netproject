@@ -3,19 +3,20 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using System;
 
 namespace DotNetProject_Team5_Armoire.Data
 {
     public class ClothingDbSeeder
     {
-        public static async Task SeedAsync(ClothDbContext clothcontext)
+        public static async Task SeedAsync(ClothDbContext db)
         {
-            if (!await clothcontext.Clothes.AnyAsync())
+            if (!await db.Clothes.AnyAsync())
             {
-                await clothcontext.Clothes.AddRangeAsync(
+                await db.Clothes.AddRangeAsync(
                     GetPreconfiguredItems());
 
-                await clothcontext.SaveChangesAsync();
+                await db.SaveChangesAsync();
             }
 
             static IEnumerable<Clothing> GetPreconfiguredItems()
@@ -30,6 +31,8 @@ namespace DotNetProject_Team5_Armoire.Data
                     new Clothing("1","Sweatpants",false,"/images/bottoms/sweatpants.jpg",2),
                 };
             }
+
+            
         }
     }
 }
