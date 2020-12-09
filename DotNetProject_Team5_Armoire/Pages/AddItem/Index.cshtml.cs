@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace DotNetProject_Team5_Armoire.Pages.AddItem
 {
     
-    [Authorize]
+
     public class IndexModel : PageModel
     {
         // connect to database
