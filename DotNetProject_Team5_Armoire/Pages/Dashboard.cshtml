@@ -34,8 +34,17 @@
                     <td><button type="button" class="btn btn-warning">Edit</button></td>
                     <td><button type="button" class="btn btn-danger">Delete</button></td>
                 </tr>
+                @foreach (var product in Model.Clothes)
+                {
+            <tr>
+                <th></th>
+                <td>@product.ClothName</td>
+                <td>@product.Category.Name</td>
+                <td>@product.IsClean</td>
+                @*<img src="@product.PictureUri" class="d-block w-100" alt="...">*@
+            </tr>
+                }
                 <tr>
-
                 </tr>
             </tbody>
         </table>
