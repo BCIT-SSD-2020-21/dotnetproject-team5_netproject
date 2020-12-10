@@ -3,45 +3,89 @@
 @{
 }
 
-@* ------------- TOPS ------------- *@
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="max-width: 50%;">
-    <div class="carousel-inner">
-        @foreach (var product in Model.Clothes)
-        {
-            <div class="carousel-item">
-                <span>@product.ClothName</span>
-                <img src="@product.PictureUri" class="d-block w-100" alt="...">
+
+<div class="container" style="text-align: center;">
+    @* ------------- TOPS ------------- *@
+    <h3>@Model.Categories[0].Name</h3>
+    <div id="topsCarousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 50%; margin: 0 auto;">
+        <div class="carousel-inner">
+            @foreach (var product in Model.Tops)
+            {
+
+                if (product == Model.Tops[0])
+                {
+                    <div class="carousel-item active">
+                        <img src=@product.PictureUri class="d-block w-100" alt=@product.ClothName>
+                    </div>
+                }
+                else
+                {
+                    <div class="carousel-item">
+                        <img src=@product.PictureUri class="d-block w-100" alt=@product.ClothName>
+                    </div>
+                }
+
+            }
+        </div>
+        <a class="carousel-control-prev" href="#topsCarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden text-black-50">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#topsCarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden text-black-50">Next</span>
+        </a>
+    </div>
+    <a  href="#topsCarousel" role="button" data-bs-pause=true>
+        Select
+    </a>
+
+    @* ------------- BOTTOMS ------------- *@
+    <h3>@Model.Categories[1].Name</h3>
+    <div id="bottomsCarousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 50%; margin: 0 auto;">
+        <div class="carousel-inner">
+            @foreach (var product in Model.Bottoms)
+            {
+                if (product == Model.Bottoms[0])
+                {
+                    <div class="carousel-item active">
+                        <img src=@product.PictureUri class="d-block w-100" alt="...">
+                    </div>
+                }
+                else
+                {
+                    <div class="carousel-item">
+                        <img src=@product.PictureUri class="d-block w-100" alt="...">
+                    </div>
+                }
+            }
+        </div>
+        <a class="carousel-control-prev" href="#bottomsCarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#bottomsCarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+</div>
+
+
+<footer class="border-top footer text-muted">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                &copy; 2020 - Armoire - <a asp-area="" asp-page="/Privacy">Privacy</a>
             </div>
-        }
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </a>
-</div>
-@* ------------- BOTTOMS ------------- *@
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="max-width: 50%;">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="../wwwroot/images/bottoms/jeans.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="../wwwroot/images/bottoms/jeans.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="../wwwroot/images/bottoms/jeans.jpg" class="d-block w-100" alt="...">
+            <div class="col-md-6 text-right">
+                <ul class="list-inline">
+                    <li class="list-inline-item">Follow Us:</li>
+                    <li class="list-inline-item"><i class="fab fa-facebook-square"></i></li>
+                    <li class="list-inline-item"><i class="fab fa-instagram-square"></i></li>
+                    <li class="list-inline-item"><i class="fab fa-linkedin"></i></li>
+                </ul>
+            </div>
         </div>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </a>
-</div>
+</footer>
