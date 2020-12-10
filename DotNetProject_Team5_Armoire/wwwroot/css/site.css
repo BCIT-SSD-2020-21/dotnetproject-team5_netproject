@@ -136,3 +136,10 @@ body {
 .red-sweater {
     
 }
+
+/*--------Item Added----------*/
+.item-added {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
