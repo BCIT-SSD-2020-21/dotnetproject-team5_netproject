@@ -29,10 +29,8 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
             }
 
             ClothItem = await _db.Clothes
-                //.Include(c => c.Category)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
-            //ClothItem = await _db.Clothes.FindAsync(id);
 
             if (ClothItem == null)
             {
@@ -62,38 +60,7 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
             return Page();
         }
 
-        //public async Task<IActionResult> OnPostAsync()
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return Page();
-        //    }
-
-        //    _db.Attach(ClothItem).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _db.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!ClothingItemExists(ClothItem.Id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return RedirectToPage("../Dashboard");
-        //}
-
-//        private bool ClothingItemExists(int id)
-//        {
-//            return _db.Clothes.Any(e => e.Id == id);
-//        }
+       
   } 
 }
 
