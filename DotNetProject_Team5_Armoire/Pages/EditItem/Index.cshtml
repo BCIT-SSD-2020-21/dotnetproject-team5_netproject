@@ -10,7 +10,7 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ClothItem.Id" />
+            <input type="hidden" asp-for="ClothItem.Id"/>
             <div class="form-group">
                 <label asp-for="ClothItem.ClothName" class="control-label"></label>
                 <input asp-for="ClothItem.ClothName" class="form-control" />
@@ -32,7 +32,10 @@
                 <span asp-validation-for="ClothItem.IsClean" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" asp-roue-id="@Model.ClothItem.Id" />
+                @*<button type="button" class="btn btn-warning">
+                    <a asp-route-id="@Model.ClothItem.Id">Edit</a>
+                </button>*@
             </div>
         </form>
     </div>

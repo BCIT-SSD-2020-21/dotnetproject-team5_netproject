@@ -28,11 +28,11 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
                 return NotFound();
             }
 
-            //ClothItem = await _db.Clothes
-            //    //.Include(c => c.Category)
-            //    .AsNoTracking()
-            //    .FirstOrDefaultAsync(m => m.Id == id);
-            ClothItem = await _db.Clothes.FindAsync(id);
+            ClothItem = await _db.Clothes
+                //.Include(c => c.Category)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.Id == id);
+            //ClothItem = await _db.Clothes.FindAsync(id);
 
             if (ClothItem == null)
             {
@@ -41,7 +41,7 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int id)
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
             var ClothToUpdate = await _db.Clothes.FindAsync(id);
 
@@ -52,7 +52,7 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
 
             if (await TryUpdateModelAsync<Clothing>(
                 ClothToUpdate,
-                "Clothes",
+                "ClothItem",
                 s => s.ClothName, s => s.PictureUri, s => s.IsClean, s => s.CategoryId))
             {
                 await _db.SaveChangesAsync();
