@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DotNetProject_Team5_Armoire.Data.Cloth.Migrations
 {
     [DbContext(typeof(ClothDbContext))]
-    [Migration("20201209000223_InitialClothSchema")]
-    partial class InitialClothSchema
+    [Migration("20201210164403_Initial schema")]
+    partial class Initialschema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

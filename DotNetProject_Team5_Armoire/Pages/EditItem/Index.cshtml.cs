@@ -28,7 +28,11 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
                 return NotFound();
             }
 
-            ClothItem = await _db.Clothes.FirstOrDefaultAsync(m => m.Id == id);
+            //ClothItem = await _db.Clothes
+            //    //.Include(c => c.Category)
+            //    .AsNoTracking()
+            //    .FirstOrDefaultAsync(m => m.Id == id);
+            ClothItem = await _db.Clothes.FindAsync(id);
 
             if (ClothItem == null)
             {
@@ -37,38 +41,59 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (!ModelState.IsValid)
+            var ClothToUpdate = await _db.Clothes.FindAsync(id);
+
+            if (ClothToUpdate == null)
             {
-                return Page();
+                return NotFound();
             }
 
-            _db.Attach(ClothItem).State = EntityState.Modified;
-
-            try
+            if (await TryUpdateModelAsync<Clothing>(
+                ClothToUpdate,
+                "Clothes",
+                s => s.ClothName, s => s.PictureUri, s => s.IsClean, s => s.CategoryId))
             {
                 await _db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ClothingItemExists(ClothItem.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return RedirectToPage("../Dashboard");
             }
 
-            return RedirectToPage("../Dashboard");
+            return Page();
         }
 
-        private bool ClothingItemExists(int id)
-        {
-            return _db.Clothes.Any(e => e.Id == id);
-        }
-    } 
+        //public async Task<IActionResult> OnPostAsync()
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return Page();
+        //    }
+
+        //    _db.Attach(ClothItem).State = EntityState.Modified;
+
+        //    try
+        //    {
+        //        await _db.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!ClothingItemExists(ClothItem.Id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+
+        //    return RedirectToPage("../Dashboard");
+        //}
+
+//        private bool ClothingItemExists(int id)
+//        {
+//            return _db.Clothes.Any(e => e.Id == id);
+//        }
+  } 
 }
 

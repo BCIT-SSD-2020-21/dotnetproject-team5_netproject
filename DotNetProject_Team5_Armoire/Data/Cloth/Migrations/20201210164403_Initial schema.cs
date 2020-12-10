@@ -2,7 +2,7 @@
 
 namespace DotNetProject_Team5_Armoire.Data.Cloth.Migrations
 {
-    public partial class InitialClothSchema : Migration
+    public partial class Initialschema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
