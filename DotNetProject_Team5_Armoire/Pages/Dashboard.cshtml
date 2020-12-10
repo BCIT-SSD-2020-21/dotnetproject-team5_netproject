@@ -1,9 +1,36 @@
 ﻿@page
 @model DotNetProject_Team5_Armoire.Pages.DashboardModel
 @{
+
+    @* ------------- HEADER ------------- *@
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Armoire</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/AddItem/Index">Add new Item</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
     <div class="table-container">
-        <h2>Your Closet</h2>
-        <button><a asp-page="/AddItem/Index">Add Item</a></button>
+        <h2>Your Virtual Closet</h2>
         <table class="table">
             <thead>
                 <tr>
@@ -44,7 +71,7 @@
                             }
                             <td>
                                 <button type="button" class="btn btn-warning">
-                                <a asp-page="/EditItem/Index" asp-route-id="@product.Id">Edit</a>
+                                    <a asp-page="/EditItem/Index" asp-route-id="@product.Id">Edit</a>
                                 </button>
                             </td>
                             <td>
@@ -57,10 +84,23 @@
                 }
             </tbody>
         </table>
-        }
     </div>
+    @* ------------- FOOTER ------------- *@
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    &copy; 2020 - Armoire - <a asp-area="" asp-page="/Privacy">Privacy</a>
+                </div>
+                <div class="col-md-6 text-right">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">Follow Us:</li>
+                        <li class="list-inline-item"><i class="fab fa-facebook-square"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-instagram-square"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-linkedin"></i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 }
-
-@*<a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-<a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-<a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>*@
