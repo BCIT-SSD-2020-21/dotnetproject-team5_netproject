@@ -7,7 +7,7 @@ namespace DotNetProject_Team5_Armoire.Models
 {
     public class Category : BaseEntity
     {
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         public virtual ICollection<Clothing> TypeClothings { get; set; }
         public Category (string name)

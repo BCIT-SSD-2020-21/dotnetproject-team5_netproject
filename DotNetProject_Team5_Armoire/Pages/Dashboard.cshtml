@@ -15,39 +15,52 @@
                 </tr>
             </thead>
             <tbody>
-            
-                @if(Model.Clothes != null && Model.Clothes.Any())
+
+                @if (Model.Clothes != null && Model.Clothes.Any())
                 {
 
                     @foreach (var product in Model.Clothes)
                     {
                         <tr>
-                        <td><img src=@product.PictureUri /></td>
-                        <td>@product.ClothName</td>
+                            <td><img src=@product.PictureUri style="width:40px" ; /></td>
+                            <td>@product.ClothName</td>
 
-                    @if(product.CategoryId == 1)
-                    {
-                        <td>Top</td>
-                    }
-                    else
-                    {
-                        <td>Bottom</td>
-                    }
+                            @if (product.CategoryId == 1)
+                            {
+                                <td>Top</td>
+                            }
+                            else
+                            {
+                                <td>Bottom</td>
+                            }
 
-                    @if (@product.IsClean)
-                    {
-                        <td>Clean</td>
-                    }
-                    else
-                    {
-                        <td>Not Clean</td>
-                    }
-                        <td><button type="button" class="btn btn-warning">Edit</button></td>
-                        <td><button type="button" class="btn btn-danger">Delete</button></td>
-                    </tr>
+                            @if (@product.IsClean)
+                            {
+                                <td>Clean</td>
+                            }
+                            else
+                            {
+                                <td>Not Clean</td>
+                            }
+                            <td>
+                                <button type="button" class="btn btn-warning">
+                                <a asp-page="/EditItem/Index" asp-route-id="@product.Id">Edit</a>
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger">
+                                    <a asp-page="/DeleteItem/Index" asp-route-id="@product.Id">Delete</a>
+                                </button>
+                            </td>
+                        </tr>
                     }
                 }
             </tbody>
         </table>
+        }
     </div>
 }
+
+@*<a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+<a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+<a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>*@
