@@ -15,13 +15,13 @@
                 if (product == Model.Tops[0])
                 {
                     <div class="carousel-item active">
-                        <img src=@product.PictureUri class="d-block w-100" alt="...">
+                        <img src=@product.PictureUri class="d-block w-100" alt=@product.ClothName>
                     </div>
                 }
                 else
                 {
                     <div class="carousel-item">
-                        <img src=@product.PictureUri class="d-block w-100" alt="...">
+                        <img src=@product.PictureUri class="d-block w-100" alt=@product.ClothName>
                     </div>
                 }
 
@@ -36,7 +36,9 @@
             <span class="visually-hidden text-black-50">Next</span>
         </a>
     </div>
-    
+    <a  href="#topsCarousel" role="button" data-bs-pause=true>
+        Select
+    </a>
 
     @* ------------- BOTTOMS ------------- *@
     <h3>@Model.Categories[1].Name</h3>
@@ -72,6 +74,18 @@
 
 <footer class="border-top footer text-muted">
     <div class="container">
-        &copy; 2020 - Armoire - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        <div class="row">
+            <div class="col-md-6">
+                &copy; 2020 - Armoire - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            </div>
+            <div class="col-md-6 text-right">
+                <ul class="list-inline">
+                    <li class="list-inline-item">Follow Us:</li>
+                    <li class="list-inline-item"><i class="fab fa-facebook-square"></i></li>
+                    <li class="list-inline-item"><i class="fab fa-instagram-square"></i></li>
+                    <li class="list-inline-item"><i class="fab fa-linkedin"></i></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </footer>
