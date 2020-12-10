@@ -19,8 +19,7 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
             _db = db;
         }
 
-    
-        public Clothing Cloth { get; set; }
+        public Clothing ClothItem { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +28,9 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
                 return NotFound();
             }
 
-            Cloth = await _db.Clothes.FirstOrDefaultAsync(c => c.Id == id);
+            ClothItem = await _db.Clothes.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Cloth == null)
+            if (ClothItem == null)
             {
                 return NotFound();
             }
@@ -45,15 +44,7 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
                 return Page();
             }
 
-            //TestimonialsContext testContext = new TestimonialsContext();
-            //Testimonials testimonial = testContext.testimonialContext.Find(id);
-            //testimonial.Testimonial = Testimonial;
-            //testContext.Entry(testimonial).State = EntityState.Modified;
-            //testContext.SaveChanges();
-            //return RedirectToAction("Index");
-
-
-            _db.Entry(Cloth).State = EntityState.Modified;
+            _db.Attach(ClothItem).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +52,7 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ClothExists(Cloth.Id))
+                if (!ClothingItemExists(ClothItem.Id))
                 {
                     return NotFound();
                 }
@@ -71,10 +62,10 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
                 }
             }
 
-            return RedirectToPage("./Dashboard");
+            return RedirectToPage("../Dashboard");
         }
 
-        private bool ClothExists(int id)
+        private bool ClothingItemExists(int id)
         {
             return _db.Clothes.Any(e => e.Id == id);
         }
