@@ -1,6 +1,33 @@
 ﻿@page
 @model DotNetProject_Team5_Armoire.Pages.DashboardModel
 @{
+    @* ------------- HEADER ------------- *@
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Armoire</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Add new Item</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    @* ------------- DASHBOARD ------------- *@
     <div class="table-container">
         <h2>Your Closet</h2>
         <button><a asp-page="/AddItem/Index">Add Item</a></button>
@@ -15,44 +42,62 @@
                 </tr>
             </thead>
             <tbody>
-            
-                @if(Model.Clothes != null && Model.Clothes.Any())
+
+                @if (Model.Clothes != null && Model.Clothes.Any())
                 {
 
                     @foreach (var product in Model.Clothes)
                     {
-                <tr>
-                    <td><img src=@product.PictureUri /></td>
-                    <td>@product.ClothName</td>
+                        <tr>
+                            <td><img src=@product.PictureUri /></td>
+                            <td>@product.ClothName</td>
 
-                    @if (product.CategoryId == 1)
-                    {
-                        <td>Top</td>
-                    }
-                    else
-                    {
-                        <td>Bottom</td>
-                    }
+                            @if (product.CategoryId == 1)
+                            {
+                                <td>Top</td>
+                            }
+                            else
+                            {
+                                <td>Bottom</td>
+                            }
 
-                    @if (@product.IsClean)
-                    {
-                        <td>Clean</td>
-                    }
-                    else
-                    {
-                        <td>Not Clean</td>
-                    }
-                    <td><button type="button" class="btn btn-warning">Edit</button></td>
-                    <td>
-                        <button type="button" class="btn btn-danger">
-                            <a asp-page="/DeleteItem" asp-route-id="@product.Id">Delete</a>
-                        </button>
-                    </td>
+                            @if (@product.IsClean)
+                            {
+                                <td>Clean</td>
+                            }
+                            else
+                            {
+                                <td>Not Clean</td>
+                            }
+                            <td><button type="button" class="btn btn-warning">Edit</button></td>
+                            <td>
+                                <button type="button" class="btn btn-danger">
+                                    <a asp-page="/DeleteItem" asp-route-id="@product.Id">Delete</a>
+                                </button>
+                            </td>
 
-                </tr>
+                        </tr>
                     }
                 }
             </tbody>
         </table>
     </div>
+    @* ------------- FOOTER ------------- *@
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    &copy; 2020 - Armoire - <a asp-area="" asp-page="/Privacy">Privacy</a>
+                </div>
+                <div class="col-md-6 text-right">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">Follow Us:</li>
+                        <li class="list-inline-item"><i class="fab fa-facebook-square"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-instagram-square"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-linkedin"></i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 }
