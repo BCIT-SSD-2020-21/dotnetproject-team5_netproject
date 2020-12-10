@@ -124,4 +124,14 @@ a {
 /*Add Item Styling*/
 .add-item-container {
     padding: 100px 100px;
+    max-width:200%
+}
+.add-item-flex-container {
+    display: flex;
+}
+.image-container {
+    padding-top: 100px;
+}
+.red-sweater {
+    
 }
