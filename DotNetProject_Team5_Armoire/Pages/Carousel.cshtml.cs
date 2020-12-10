@@ -5,12 +5,14 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using DotNetProject_Team5_Armoire.Data;
 using DotNetProject_Team5_Armoire.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotNetProject_Team5_Armoire.Pages
 {
+    [Authorize]
     public class CarouselModel : PageModel
     {
         private readonly ClothDbContext _db;
@@ -33,22 +35,25 @@ namespace DotNetProject_Team5_Armoire.Pages
             if (User.Identity.IsAuthenticated)
             {
                 userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            }
+                Clothes = await _db.Clothes.Where(c => c.OwnerId == userId).ToListAsync();
 
-            Categories = await _db.Categories.ToListAsync();
-            Clothes = await _db.Clothes.ToListAsync();
+                Categories = await _db.Categories.ToListAsync();
 
-            foreach (var item in Clothes)
-            {
-                if (item.CategoryId == 1)
+                foreach (var item in Clothes)
                 {
-                    Tops.Add(item);
+                    if (item.CategoryId == 1)
+                    {
+                        Tops.Add(item);
 
-                } else
-                {
-                    Bottoms.Add(item);
+                    }
+                    else
+                    {
+                        Bottoms.Add(item);
+                    }
                 }
             }
+
+            
         }
     }
 }
