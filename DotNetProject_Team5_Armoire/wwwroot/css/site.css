@@ -96,7 +96,7 @@ body {
     min-height: 100vh;
 }
 
-a {
+.register-page a, .login-page a{
     color: #FFF;
 }
 
