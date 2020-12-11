@@ -28,6 +28,7 @@ namespace DotNetProject_Team5_Armoire.Pages
         public List<Clothing> Bottoms = new List<Clothing>();
         public List<Clothing> isDirty = new List<Clothing>();
 
+        public string msg = "";
 
         public async Task OnGet()
         {
@@ -57,6 +58,14 @@ namespace DotNetProject_Team5_Armoire.Pages
                         isDirty.Add(item);
 
                     }
+                }
+                if (isDirty.Count > 3)
+                {
+                    msg = $"You have {isDirty.Count} items in your dirty pile. Time to do laundry!";
+                }
+                else
+                {
+                    msg = "No new notifications at this time";
                 }
             }
 
