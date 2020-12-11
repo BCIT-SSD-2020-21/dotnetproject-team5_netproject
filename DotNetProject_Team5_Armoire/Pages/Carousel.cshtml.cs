@@ -39,6 +39,7 @@ namespace DotNetProject_Team5_Armoire.Pages
 
                 Categories = await _db.Categories.ToListAsync();
 
+                // filter
                 foreach (var item in Clothes)
                 {
                     if (item.CategoryId == 1)
