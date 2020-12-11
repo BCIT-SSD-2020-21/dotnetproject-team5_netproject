@@ -26,6 +26,7 @@ namespace DotNetProject_Team5_Armoire.Pages
         public List<Clothing> Clothes = new List<Clothing>();
         public List<Clothing> Tops = new List<Clothing>();
         public List<Clothing> Bottoms = new List<Clothing>();
+        public List<Clothing> isDirty = new List<Clothing>();
 
 
         public async Task OnGet()
@@ -45,11 +46,16 @@ namespace DotNetProject_Team5_Armoire.Pages
                     if (item.CategoryId == 1)
                     {
                         Tops.Add(item);
-
                     }
                     else
                     {
                         Bottoms.Add(item);
+                    }
+
+                    if (!item.IsClean)
+                    {
+                        isDirty.Add(item);
+
                     }
                 }
             }
