@@ -37,7 +37,7 @@
         <h3>@Model.Categories[0].Name</h3>
         @if (Model.Tops.Any())
         {
-            <div id="topsCarousel" class="carousel slide" data-bs-ride="carousel" style="margin: 0 auto;" data-bs-interval="false">
+            <div id="topsCarousel" class="carousel slide" data-bs-ride="carousel" style="margin: 0 auto;" data-bs-interval="false" data-bs-touch="true">
                 <div class="carousel-inner">
                     @foreach (var product in Model.Tops)
                     {
@@ -81,7 +81,7 @@
         <h3>@Model.Categories[1].Name</h3>
         @if (Model.Bottoms.Any())
         {
-            <div id="bottomsCarousel" class="carousel slide" data-bs-ride="carousel" style="margin: 0 auto;" data-bs-interval="false">
+            <div id="bottomsCarousel" class="carousel slide" data-bs-ride="carousel" style="margin: 0 auto;" data-bs-interval="false" data-bs-touch="true">
                 <div class="carousel-inner">
                     @foreach (var product in Model.Bottoms)
                     {
