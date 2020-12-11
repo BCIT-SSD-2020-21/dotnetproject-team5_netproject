@@ -144,4 +144,13 @@ body {
 .row {
     justify-content:center;
 
+.red-sweater {
+    
+}
+
+/*--------Item Added----------*/
+.item-added {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
