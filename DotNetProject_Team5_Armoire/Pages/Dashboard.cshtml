@@ -30,7 +30,33 @@
     </header>
 
     <div class="table-container">
-        <h2>Your Virtual Closet</h2>
+        <div class="row flex-row">
+            <div class="col">
+                <h2>Your Virtual Closet</h2>
+            </div>
+        </div>
+        <div>
+            <form method="get">
+                <select name="category">
+                    @foreach (var categ in Model.Categories)
+                    {
+                        <option>@categ.Name</option>
+                    }
+                </select>
+
+                <button type ="submit">Filter</button>
+            </form>
+                
+
+            @*<div class="form-check">
+                <input type="checkbox" class="form-check-input" id="tops" name="tops" value="true" size="50">
+                <label class="form-check-label" for="tops">Tops</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="bottoms" name="bottoms" value="true" size="50">
+                <label class="form-check-label" for="bottoms">Bottoms</label>
+            </div>*@
+        </div>
         <table class="table">
             <thead>
                 <tr>
