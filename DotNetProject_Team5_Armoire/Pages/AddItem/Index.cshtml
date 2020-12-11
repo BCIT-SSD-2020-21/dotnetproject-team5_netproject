@@ -31,7 +31,7 @@
 
         <div class="add-item-container">
             <h1>Add New Item</h1>
-            <form asp-page="/AddItem/Index" method="post">
+            <form enctype="multipart/form-data" asp-page="/AddItem/Index" method="post">
                 <div class="form-group">
                     <label for="clothingName">Clothing Name</label>
                     <input type="text" class="form-control" id="clothingName" name="clothingName" aria-describedby="emailHelp" placeholder="Name of Item">
