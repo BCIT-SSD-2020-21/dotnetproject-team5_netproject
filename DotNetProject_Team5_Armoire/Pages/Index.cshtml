@@ -10,34 +10,45 @@
 
 <div class="landing">
     @* ------------------ NAVBAR ----------------------- *@
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
-            <div class="container px-0">
-                <a class="navbar-brand text-white" asp-area="" asp-page="/Index">Armoire</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon text-white"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-0">
-                        @if (SignInManager.IsSignedIn(User))
-                        {
+    @section Head{
+        <style>
+            body {
+                background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url("/images/hero-img-lg.jpg");
+                background-size: cover;
+                min-height: 100vh;
+            }
+        </style>
+    }
+    @*@section Banner {
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
+                <div class="container px-0">
+                    <a class="navbar-brand text-white" asp-area="" asp-page="/Index">Armoire</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon text-white"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <partial name="_LoginPartial" />
+                        <ul class="navbar-nav flex-grow-0">
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-page="/Dashboard">Dashboard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-page="/Index">Add new Item</a>
+                                </li>
+                            }
                             <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-page="/Dashboard">Dashboard</a>
+                                <a class="nav-link text-white" asp-area="" asp-page="/Index">About</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-page="/Index">Add new Item</a>
-                            </li>
-                        }
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-page="/Index">About</a>
-                        </li>
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </header>
+    }*@
 
     <div class="welcome-wrapper">
         <div>
@@ -46,9 +57,9 @@
         </div>
         @if (SignInManager.IsSignedIn(User))
         {
-            
-                <a asp-page="/Carousel" class="nav-link text-white">Carousel</a>
-                <a class="nav-link text-white" asp-page="/Dashboard">Dashboard</a>
+
+            <a asp-page="/Carousel" class="nav-link text-white">Carousel</a>
+            <a class="nav-link text-white" asp-page="/Dashboard">Dashboard</a>
         }
         else
         {

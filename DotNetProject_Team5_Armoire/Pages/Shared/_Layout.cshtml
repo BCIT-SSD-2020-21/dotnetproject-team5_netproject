@@ -7,12 +7,28 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    @if (!IsSectionDefined("Head"))
+    {
+        <style >
+            body {
+                background: none;
+            }
+        </style>
+    }
+    else
+    {
+        @RenderSection("Head", required: true)
+    }
+
 </head>
 <body>
-    @*<header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white mb-3">
+
+    @if (!IsSectionDefined("Banner"))
+    {
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3">
                 <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-page="/Index">Armoire</a>
+                    <a class="navbar-brand text-white" asp-area="" asp-page="/Index">Armoire</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -21,21 +37,22 @@
                         <partial name="_LoginPartial" />
                         <ul class="navbar-nav flex-grow-0">
                             <li class="nav-item">
-                                 <a class="nav-link text-dark" asp-area="" asp-page="/Dashboard">Dashboard</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">About</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">Add new Item</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">About</a>
-                            </li>
+                            
                         </ul>
                     </div>
                 </div>
             </nav>
-        </header>*@
+        </header>
+    }
+    else
+    {
+        @RenderSection("Banner", required: true)
+    }
     <div>
         <main role="main">
+
             @RenderBody()
         </main>
     </div>

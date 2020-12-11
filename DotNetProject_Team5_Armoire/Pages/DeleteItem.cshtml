@@ -1,32 +1,7 @@
 ﻿@page
 @model DotNetProject_Team5_Armoire.Pages.DeleteItemModel
-        <header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white mb-3">
-                <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-page="/Index">Armoire</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                        <partial name="_LoginPartial" />
-                        <ul class="navbar-nav flex-grow-0">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Dashboard">Dashboard</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">Add new Item</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">About</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
 
-        <div class="w-50 mx-auto m-5" style="height:350px;">
+@{        <div class="w-50 mx-auto m-5">
             <h2>Delete Item</h2>
             <div class="text-center border p-2">
                 <div class="row align-items-center">
@@ -66,7 +41,7 @@
                 </form>
             </div>
         </div>
-        <footer class="border-top text-muted pb-3 pt-3">
+        <footer class="border-top text-muted pb-3 pt-3 footer">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
@@ -83,4 +58,5 @@
                 </div>
             </div>
         </footer>
+    }
 
