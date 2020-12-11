@@ -9,7 +9,7 @@ a.navbar-brand {
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: #4F4F4F;
 }
 
 .btn-primary {
@@ -77,12 +77,20 @@ body {
     background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../images/hero-img-lg.jpg");
     background-size: cover;
     min-height: 100vh;
-    padding: 2em;
+    /*padding: 2em;*/
 }
 
 .welcome-wrapper {
     text-align: center;
     color: white;
+    margin-top: 10%;
+}
+
+.about {
+    background: rgba(196, 196, 196, 0.34);
+    padding: 2em 1.5em;
+    width: 70%;
+    margin: 2em auto;
 }
 
 /*--------Login----------*/
@@ -128,7 +136,6 @@ body {
 }
 .add-item-flex-container {
     display: flex;
-    justify-content: space-evenly;
 }
 .image-container {
     padding-top: 100px;
@@ -148,9 +155,34 @@ body {
     
 }
 
-/*--------Item Added----------*/
-.item-added {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+
+/*-------- CAROUSEL ----------*/
+.carousel-img {
+    object-fit: cover;
+    height: 30em;
+    width: auto;
+    margin: 0 auto;
+}
+
+.btn-size {
+    top: 50%;
+    bottom: unset;
+}
+
+
+/*-------- GENERAL ----------*/
+.a-button {
+    color: white;
+    border: 1px solid #4F4F4F;
+    PADDING: 6px 20px;
+    margin: 10px;
+    border-radius: 6px;
+    background: #4F4F4F;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+i.far.fa-user {
+    border: 1px solid white;
+    border-radius: 4em;
+    padding: 1em;
 }
