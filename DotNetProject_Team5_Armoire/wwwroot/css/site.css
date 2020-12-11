@@ -133,6 +133,17 @@ body {
 .image-container {
     padding-top: 100px;
 }
+
+/*Forgot Passwrod*/
+.forgot-password {
+    padding: 100px 100px;
+}
+.forgot-password-content {
+    text-align: center;
+}
+.row {
+    justify-content:center;
+
 .red-sweater {
     
 }
