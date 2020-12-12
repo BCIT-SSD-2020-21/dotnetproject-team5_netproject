@@ -136,6 +136,7 @@ a:hover {
 }
 .add-item-flex-container {
     display: flex;
+    justify-content: space-evenly;
 }
 .image-container {
     padding-top: 100px;
@@ -151,6 +152,7 @@ a:hover {
 .row {
     justify-content: center;
 }
+
 
 /*-------- CAROUSEL ----------*/
 .carousel-img {
@@ -186,4 +188,11 @@ a:hover {
 .btn:focus {
     outline: 0;
     box-shadow: none;
+}
+}
+
+/*Confirm email */
+.confirm-email-container {
+    padding: 100px 100px;
+    text-align:center;
 }
