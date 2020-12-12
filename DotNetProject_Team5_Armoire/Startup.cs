@@ -12,6 +12,8 @@ using DotNetProject_Team5_Armoire.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using GoogleReCaptcha.V3.Interface;
+using GoogleReCaptcha.V3;
 
 namespace DotNetProject_Team5_Armoire
 {
@@ -38,6 +40,7 @@ namespace DotNetProject_Team5_Armoire
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddHttpClient<ICaptchaValidator, GoogleReCaptchaValidator>();
             services.AddRazorPages();
         }
 
