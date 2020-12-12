@@ -47,15 +47,11 @@ namespace DotNetProject_Team5_Armoire.Pages
 
         public void OnPost(int? id)
         {
+            if (id > 0)
                 Clothes = db.Clothes.Where(c => c.CategoryId == id);
+            else
+                Clothes = db.Clothes.Where(c => c.CategoryId > 0);
         }
-        //public void  OnPost(int? id)
-        //{
-           
-        //    Clothes = db.Clothes
-        //            .Where(c => c.CategoryId == id);
-            
-
-        //}
+        
     }
 }
