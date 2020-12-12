@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,7 +13,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
     @if (!IsSectionDefined("Head"))
     {
-        <style >
+        <style>
             body {
                 background: none;
             }
@@ -26,20 +30,20 @@
     @if (!IsSectionDefined("Banner"))
     {
         <header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3">
-                <div class="container">
-                    <a class="navbar-brand text-white" asp-area="" asp-page="/Index">Armoire</a>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
+                <div class="container px-0">
+                    <a class="navbar-brand text-muted" asp-area="" asp-page="/Index">Armoire</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon text-muted"></span>
                     </button>
                     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                         <partial name="_LoginPartial" />
                         <ul class="navbar-nav flex-grow-0">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">About</a>
+                                <a class="nav-link text-muted" asp-area="" asp-page="/Index">About</a>
                             </li>
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -57,23 +61,35 @@
         </main>
     </div>
 
-    @*<footer class="border-top footer text-muted">
-            <div class="container">
-                 <div class="row">
-                <div class="col-md-6">
-                    &copy; 2020 - Armoire - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        <footer class="border-top footer text-muted">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            &copy; 2020 - Armoire 
+                        </div>
+                        
+                        <div class="col-md-6 text-right">
+                            <ul class="list-inline">
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <li class="list-inline-item">Follow Us:</li>
+                                    <li class="list-inline-item"><i class="fab fa-facebook-square"></i></li>
+                                    <li class="list-inline-item"><i class="fab fa-instagram-square"></i></li>
+                                    <li class="list-inline-item"><i class="fab fa-linkedin"></i></li>
+
+                                }
+                                else
+                                {
+                                    <li class="list-inline-item"><a asp-area="" asp-page="/Index">Terms</a></li>
+                                    <li class="list-inline-item"><a asp-area="" asp-page="/Privacy">Privacy</a></li>
+                                }
+                            </ul>
+                            </div>
+                        </div>
                 </div>
-                <div class="col-md-6 text-right">
-                    <ul class="list-inline">
-                        <li class="list-inline-item">Follow Us:</li>
-                        <li class="list-inline-item"><i class="fab fa-facebook-square"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-instagram-square"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-linkedin"></i></li>
-                    </ul>
-                </div>
-                </div>
-            </div>
-        </footer>*@
+            </footer>
+  
+   
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
