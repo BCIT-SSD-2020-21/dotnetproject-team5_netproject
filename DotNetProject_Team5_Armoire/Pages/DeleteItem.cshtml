@@ -28,35 +28,18 @@
                     </div>
                     <div class="col-md-6">
                         <div>
-                            @Html.DisplayFor(model => model.Cloth.PictureUri)
+                            <img src=@Model.Cloth.PictureUri style="width:200px; height:200px" ; />
                         </div>
                     </div>
                 </div>
 
 
-                <form method="post" class="pt-2">
+                <form method="post" class="pt-4">
                     <input type="hidden" asp-for="Cloth.Id" />
                     <input type="submit" value="Delete" class="btn btn-danger" />
                     <a asp-page="./Dashboard" class="btn btn-secondary">Cancel</a>
                 </form>
             </div>
         </div>
-        <footer class="border-top text-muted pb-3 pt-3 footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        &copy; 2020 - Armoire - <a asp-area="" asp-page="/Privacy">Privacy</a>
-                    </div>
-                    <div class="col-md-6 text-right">
-                        <ul class="list-inline">
-                            <li class="list-inline-item">Follow Us:</li>
-                            <li class="list-inline-item"><i class="fab fa-facebook-square"></i></li>
-                            <li class="list-inline-item"><i class="fab fa-instagram-square"></i></li>
-                            <li class="list-inline-item"><i class="fab fa-linkedin"></i></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
     }
 
