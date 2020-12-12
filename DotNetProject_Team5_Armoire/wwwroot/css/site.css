@@ -136,6 +136,7 @@ body {
 }
 .add-item-flex-container {
     display: flex;
+    justify-content: space-evenly;
 }
 .image-container {
     padding-top: 100px;
@@ -183,4 +184,10 @@ i.far.fa-user {
     border: 1px solid white;
     border-radius: 4em;
     padding: 1em;
+}
+
+/*Confirm email */
+.confirm-email-container {
+    padding: 100px 100px;
+    text-align:center;
 }
