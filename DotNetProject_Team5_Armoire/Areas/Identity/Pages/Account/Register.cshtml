@@ -3,7 +3,20 @@
 @{
     ViewData["Title"] = "Armoire";
 }
+@section Head{
+    <style>
+        body {
+            background: url("/images/register-lg.jpg");
+            background-size: cover;
+            min-height: 100vh;
+        }
+    </style>
+}
 
+@section Banner {
+    <header>
+    </header>
+}
 
 <div class="register-page">
     <div class="container-fluid">
@@ -40,21 +53,6 @@
                 </div>
             </form>
         </div>
-        <footer class="border-top register-footer text-white mt-5 pb-3 pt-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        &copy; Armoire
-                    </div>
-                    <div class="col-md-6 text-right">
-                        <ul class="list-inline">
-                            <li class="list-inline-item"><a asp-area="" asp-page="/Privacy">Terms</a></li>
-                            <li class="list-inline-item"><a asp-area="" asp-page="/Privacy">Privacy</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
     </div>
 </div>
 

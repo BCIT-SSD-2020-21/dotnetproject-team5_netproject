@@ -5,6 +5,21 @@
     ViewData["Title"] = "Armoire";
 }
 
+@section Head{
+    <style>
+        body {
+            background: url("/images/login-lg.jpg");
+            background-size: cover;
+            min-height: 100vh;
+        }
+    </style>
+}
+
+@section Banner {
+    <header>
+    </header>
+}
+
 <div class="container-fluid  login-page">
 
     <h1 class="text-center text-color p-5">@ViewData["Title"]</h1>
@@ -36,7 +51,7 @@
             </div>
             <div class="form-group text-center">
                 <p>
-                    <a id="forgot-password" asp-page="./ForgotPassword" >Forgot your password?</a>
+                    <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
                 </p>
                 <p>
                     <span>New to Armoire? </span>
@@ -44,27 +59,10 @@
                 </p>
             </div>
         </form>
-    </section>0
-
-    <footer class="border-top register-footer text-white mt-3 pb-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    &copy; Armoire
-                </div>
-                <div class="col-md-6 text-right">
-                    <ul class="list-inline">
-                        <li class="list-inline-item "><a asp-area="" asp-page="/Privacy" class="text-color">Terms</a></li>
-                        <li class="list-inline-item "><a asp-area="" asp-page="/Privacy" class="text-color">Privacy</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-
+    </section>
 </div>
 
-    
+
 
 
 @section Scripts {
