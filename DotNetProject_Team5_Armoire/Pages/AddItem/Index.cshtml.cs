@@ -21,6 +21,7 @@ namespace DotNetProject_Team5_Armoire.Pages.AddItem
         // connect to database
         protected readonly ClothDbContext db;
 
+        public Clothing Clothing { get; set; }
         [BindProperty]
         public IFormFile Upload { get; set; }
 
@@ -39,29 +40,39 @@ namespace DotNetProject_Team5_Armoire.Pages.AddItem
 
         public async Task<IActionResult> OnPostUploadAsync(string clothingName, string category, bool isClean = false)
         {
-            var file = Path.Combine(_environment.ContentRootPath, "wwwroot/images", Upload.FileName);
-            var imageUri = Path.Combine("/images", Upload.FileName);
-            using (var fileStream = new FileStream(file, FileMode.Create))
+            if(ModelState.IsValid)
             {
-                await Upload.CopyToAsync(fileStream);
+
+                string imageUri = null;
+                if(Upload != null)
+                {
+                    var file = Path.Combine(_environment.ContentRootPath, "wwwroot/images", Upload.FileName);
+                    imageUri = Path.Combine("/images", Upload.FileName);
+                    using (var fileStream = new FileStream(file, FileMode.Create))
+                    {
+                        await Upload.CopyToAsync(fileStream);
+                    }
+                }
+
+                //get UserId
+                string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                var categoryId = category switch
+                {
+                    "Top" => 1,
+                    "Bottom" => 2,
+                    _ => 1,
+                };
+
+                // Create new clothing object and save it to database
+                Clothing = new Clothing(userId, clothingName, isClean, imageUri, categoryId);
+                db.Clothes.Add(Clothing);
+                db.SaveChanges();
+
+                return RedirectToPage("/ItemAddedNotification/Index");
             }
 
-            //get UserId
-            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-            var categoryId = category switch
-            {
-                "Top" => 1,
-                "Bottom" => 2,
-                _ => 1,
-            };
-
-            // Create new clothing object and save it to database
-            Clothing clothing = new Clothing(userId, clothingName, isClean, imageUri, categoryId);
-            db.Clothes.Add(clothing);
-            db.SaveChanges();
-
-            return Redirect("/ItemAddedNotification/Index");
+            return Page();
         }
 
     }
