@@ -1,42 +1,44 @@
 ﻿@page
 @model DotNetProject_Team5_Armoire.Pages.DashboardModel
 @{
-    int route;
 }
     <div class="table-container">
         <div class="row flex-row">
             <div class="col">
                 <h2>Your Virtual Closet</h2>
             </div>
-        </div>
-        <div>
-            <form method="post">
-                @if (Model.Clothes != null && Model.Clothes.Any())
-                {
-
-                    @*<select>
-                @foreach (var categ in Model.Clothes.Select(x => x.CategoryId).Distinct())
-                {
-                    @if (categ == 1)
+            <div>
+                <form method="post">
+                    @if (Model.Clothes != null && Model.Clothes.Any())
                     {
-                        <option>Tops</option>
-                        route = 1;
-                    }
-                    else
-                    {
-                        <option>Bottoms</option>
-                        route = 2;
+
+                        @*<select>
+                        @foreach (var categ in Model.Clothes.Select(x => x.CategoryId).Distinct())
+                        {
+                            @if (categ == 1)
+                            {
+                                <option>Tops</option>
+                                route = 1;
+                            }
+                            else
+                            {
+                                <option>Bottoms</option>
+                                route = 2;
+                            }
+
+                        }
+                    </select>*@
+              
+                        <input type="submit" value="All" class="btn " asp-route-id="0" />
+                        <input type="submit" value="Tops" class="btn " asp-route-id="1" />
+                        <input type="submit" value="Bottoms" class="btn " asp-route-id="2" />
+                
                     }
 
-                }
-            </select>*@
-                    <input type="submit" value="All" class="btn btn-primary" asp-route-id="0" />
-                    <input type="submit" value="Tops" class="btn btn-primary" asp-route-id="1" />
-                    <input type="submit" value="Bottoms" class="btn btn-primary" asp-route-id="2" />
-                }
+                </form>
 
-            </form>
-            
+            </div>
+
         </div>
         <table class="table">
             <thead>
