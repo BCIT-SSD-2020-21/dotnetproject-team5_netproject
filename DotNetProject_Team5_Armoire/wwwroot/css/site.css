@@ -73,12 +73,12 @@ body {
 
 /*  ------- INDEX -------- */
 
-.landing {
+/*.landing {
     background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../images/hero-img-lg.jpg");
     background-size: cover;
-    min-height: 100vh;
+    min-height: 100vh;*/
     /*padding: 2em;*/
-}
+/*}*/
 
 .welcome-wrapper {
     text-align: center;
@@ -98,11 +98,11 @@ body {
     background: rgba(255,255,255,0.7);
 }
 
-.login-page {
+/*.login-page {
     background: url("../images/login-lg.jpg");
     background-size: cover;
     min-height: 100vh;
-}
+}*/
 
 .register-page a, .login-page a{
     color: #FFF;
@@ -114,11 +114,11 @@ body {
     }
 
 /*--------Register----------*/
-.register-page {
+/*.register-page {
     background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../images/register-lg.jpg");
     background-size: cover;
     min-height: 100vh;
-}
+}*/
 
 .register-form {
     background-color: rgba(255, 255, 255,0.6);
