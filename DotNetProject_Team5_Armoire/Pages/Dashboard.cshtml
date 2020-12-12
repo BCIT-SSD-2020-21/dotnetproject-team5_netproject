@@ -1,6 +1,7 @@
 ﻿@page
 @model DotNetProject_Team5_Armoire.Pages.DashboardModel
 @{
+    int route;
 }
     <div class="table-container">
         <div class="row flex-row">
@@ -10,14 +11,29 @@
         </div>
         <div>
             <form method="post">
-                <select name="category" id="category " >
-                    @foreach (var categ in Model.Categories)
-                    {
-                        <option value="@categ.Id">@categ.Name</option>
-                    }
-                </select>
+                @if (Model.Clothes != null && Model.Clothes.Any())
+                {
 
-                <input type="submit" value="Save" class="btn btn-primary" asp-route-id="@Model.Categories" />
+                    @*<select>
+                @foreach (var categ in Model.Clothes.Select(x => x.CategoryId).Distinct())
+                {
+                    @if (categ == 1)
+                    {
+                        <option>Tops</option>
+                        route = 1;
+                    }
+                    else
+                    {
+                        <option>Bottoms</option>
+                        route = 2;
+                    }
+
+                }
+            </select>*@
+                    <input type="submit" value="Tops" class="btn btn-primary" asp-route-id="1" />
+                    <input type="submit" value="Bottoms" class="btn btn-primary" asp-route-id="2" />
+                }
+
             </form>
             
         </div>
@@ -35,9 +51,11 @@
 
                 @if (Model.Clothes != null && Model.Clothes.Any())
                 {
+                   
 
                     @foreach (var product in Model.Clothes)
                     {
+                      
                         <tr>
                             <td><img src=@product.PictureUri style="width:40px" ; /></td>
                             <td>@product.ClothName</td>

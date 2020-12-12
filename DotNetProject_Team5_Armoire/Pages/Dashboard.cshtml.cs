@@ -7,6 +7,7 @@ using DotNetProject_Team5_Armoire.Data;
 using DotNetProject_Team5_Armoire.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotNetProject_Team5_Armoire.Pages
@@ -17,8 +18,11 @@ namespace DotNetProject_Team5_Armoire.Pages
         //Access database
         protected readonly ClothDbContext db;
         public IQueryable<Clothing> Clothes { get; set; }
-        public IQueryable<Category> Categories { get; set; }
+        //public IQueryable<Category> Category { get; set; }
+        
 
+        
+        
         public DashboardModel(ClothDbContext db)
         {
             this.db = db;
@@ -37,16 +41,21 @@ namespace DotNetProject_Team5_Armoire.Pages
                 
             }
 
-            Categories = db.Categories.Where(c => c.Id == 1 || c.Id == 2);
+            //Category = db.Categories.Where(c => c.Id == 1 || c.Id == 2);
         }
 
-        public void  OnPost(int? id)
+
+        public void OnPost(int? id)
         {
+                Clothes = db.Clothes.Where(c => c.CategoryId == id);
+        }
+        //public void  OnPost(int? id)
+        //{
            
-            Clothes = db.Clothes
-                    .Where(c => c.CategoryId == id);
+        //    Clothes = db.Clothes
+        //            .Where(c => c.CategoryId == id);
             
 
-        }
+        //}
     }
 }
