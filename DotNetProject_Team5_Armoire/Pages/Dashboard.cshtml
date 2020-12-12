@@ -36,26 +36,17 @@
             </div>
         </div>
         <div>
-            <form method="get">
-                <select name="category">
+            <form method="post">
+                <select name="category" id="category " >
                     @foreach (var categ in Model.Categories)
                     {
-                        <option>@categ.Name</option>
+                        <option value="@categ.Id">@categ.Name</option>
                     }
                 </select>
 
-                <button type ="submit">Filter</button>
+                <input type="submit" value="Save" class="btn btn-primary" asp-route-id="@Model.Categories" />
             </form>
-                
-
-            @*<div class="form-check">
-                <input type="checkbox" class="form-check-input" id="tops" name="tops" value="true" size="50">
-                <label class="form-check-label" for="tops">Tops</label>
-            </div>
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="bottoms" name="bottoms" value="true" size="50">
-                <label class="form-check-label" for="bottoms">Bottoms</label>
-            </div>*@
+            
         </div>
         <table class="table">
             <thead>

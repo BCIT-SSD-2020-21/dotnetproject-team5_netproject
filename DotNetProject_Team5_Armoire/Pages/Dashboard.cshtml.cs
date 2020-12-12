@@ -17,8 +17,6 @@ namespace DotNetProject_Team5_Armoire.Pages
         //Access database
         protected readonly ClothDbContext db;
         public IQueryable<Clothing> Clothes { get; set; }
-        public IQueryable<Clothing> Tops { get; set; }
-        public IQueryable<Clothing> Bottoms { get; set; }
         public IQueryable<Category> Categories { get; set; }
 
         public DashboardModel(ClothDbContext db)
@@ -40,6 +38,15 @@ namespace DotNetProject_Team5_Armoire.Pages
             }
 
             Categories = db.Categories.Where(c => c.Id == 1 || c.Id == 2);
+        }
+
+        public void  OnPost(int? id)
+        {
+           
+            Clothes = db.Clothes
+                    .Where(c => c.CategoryId == id);
+            
+
         }
     }
 }
