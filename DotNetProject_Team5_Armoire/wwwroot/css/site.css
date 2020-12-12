@@ -108,10 +108,10 @@ body {
     color: #FFF;
 }
 
-    a:hover {
-        text-decoration: none;
-        color: #000;
-    }
+a:hover {
+    text-decoration: none;
+    color: #000;
+}
 
 /*--------Register----------*/
 .register-page {
