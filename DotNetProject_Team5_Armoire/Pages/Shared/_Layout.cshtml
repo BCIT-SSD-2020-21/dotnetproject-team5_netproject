@@ -1,7 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,11 +41,6 @@
                         <ul class="navbar-nav flex-grow-0">
                             <li class="nav-item">
                                 <a class=@(@IsSectionDefined("Head") ? "nav-link text-white" : "nav-link text-dark") asp-area="" asp-page="/Index">About</a>
-                            </li>
-                            <li>
-                                <button type="button" class="@(@IsSectionDefined("Head") ? "btn  text-white" : "btn text-dark")" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Hello - message here">
-                                    <i class="fas fa-bell"></i>
-                                </button> |
                             </li>
                         </ul>
                     </div>
