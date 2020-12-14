@@ -3,7 +3,43 @@
 @{
 }
     <div class="table-container">
-        <h2>Your Virtual Closet</h2>
+        <div class="row flex-row">
+            <div class="col">
+                <h2>Your Virtual Closet</h2>
+            </div>
+            <div>
+                <form method="post">
+                    @if (Model.Clothes != null && Model.Clothes.Any())
+                    {
+
+                        @*<select>
+                        @foreach (var categ in Model.Clothes.Select(x => x.CategoryId).Distinct())
+                        {
+                            @if (categ == 1)
+                            {
+                                <option>Tops</option>
+                                route = 1;
+                            }
+                            else
+                            {
+                                <option>Bottoms</option>
+                                route = 2;
+                            }
+
+                        }
+                    </select>*@
+              
+                        <input type="submit" value="All" class="btn " asp-route-id="0" />
+                        <input type="submit" value="Tops" class="btn " asp-route-id="1" />
+                        <input type="submit" value="Bottoms" class="btn " asp-route-id="2" />
+                
+                    }
+
+                </form>
+
+            </div>
+
+        </div>
         <table class="table">
             <thead>
                 <tr>
@@ -18,9 +54,11 @@
 
                 @if (Model.Clothes != null && Model.Clothes.Any())
                 {
+                   
 
                     @foreach (var product in Model.Clothes)
                     {
+                      
                         <tr>
                             <td><img src=@product.PictureUri style="width:40px" ; /></td>
                             <td>@product.ClothName</td>
