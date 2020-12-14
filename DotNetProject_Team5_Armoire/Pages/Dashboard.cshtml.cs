@@ -20,9 +20,6 @@ namespace DotNetProject_Team5_Armoire.Pages
         public IQueryable<Clothing> Clothes { get; set; }
         //public IQueryable<Category> Category { get; set; }
         
-
-        
-        
         public DashboardModel(ClothDbContext db)
         {
             this.db = db;
@@ -32,25 +29,22 @@ namespace DotNetProject_Team5_Armoire.Pages
         {
             string userId;
             
-
             if (User.Identity.IsAuthenticated)
             {
                 userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 Clothes = db.Clothes
                     .Where(c => c.OwnerId == userId);
-                
             }
-
-            //Category = db.Categories.Where(c => c.Id == 1 || c.Id == 2);
         }
-
-
+        
         public void OnPost(int? id)
         {
+            string userId;
+            userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (id > 0)
-                Clothes = db.Clothes.Where(c => c.CategoryId == id);
+                Clothes = db.Clothes.Where(c => c.CategoryId == id && c.OwnerId == userId );
             else
-                Clothes = db.Clothes.Where(c => c.CategoryId > 0);
+                Clothes = db.Clothes.Where(c => c.CategoryId > 0 && c.OwnerId == userId);
         }
         
     }
