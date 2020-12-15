@@ -23,6 +23,7 @@ namespace DotNetProject_Team5_Armoire.Pages
         }
 
         public Clothing Cloth { get; set; }
+        public Category Category { get; set; }
 
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -34,6 +35,7 @@ namespace DotNetProject_Team5_Armoire.Pages
             }
 
             Cloth = await _db.Clothes.FirstOrDefaultAsync(c => c.Id == id);
+            Category = await _db.Categories.FirstOrDefaultAsync(c => c.Id == Cloth.CategoryId);
 
             if (Cloth == null)
             {

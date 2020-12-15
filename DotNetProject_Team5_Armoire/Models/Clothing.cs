@@ -11,13 +11,13 @@ namespace DotNetProject_Team5_Armoire.Models
     {
         public string OwnerId { get; set; }
         [Required]
-        [Column(TypeName = "nvarchar(50)")] 
+        [Column(TypeName = "nvarchar(50)")]
         public string ClothName { get; set; }
         public bool IsClean { get; set; }
         public string PictureUri { get; set; }
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
-        public Clothing (string ownerId, string clothName, bool isClean, string pictureUri, int categoryId) 
+        public Clothing(string ownerId, string clothName, bool isClean, string pictureUri, int categoryId)
         {
             OwnerId = ownerId;
             ClothName = clothName;
@@ -25,5 +25,7 @@ namespace DotNetProject_Team5_Armoire.Models
             PictureUri = pictureUri;
             CategoryId = categoryId;
         }
+
+        public Clothing() { }
     }
 }

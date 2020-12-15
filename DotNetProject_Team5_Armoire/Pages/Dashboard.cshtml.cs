@@ -18,8 +18,9 @@ namespace DotNetProject_Team5_Armoire.Pages
         //Access database
         protected readonly ClothDbContext db;
         public IQueryable<Clothing> Clothes { get; set; }
-        // public IQueryable<Category> Categories { get; set; }
+
         public List<Clothing> isDirty = new List<Clothing>();
+        public Clothing Clothing { get; set; }
 
         public string msg = "";
 
@@ -28,22 +29,27 @@ namespace DotNetProject_Team5_Armoire.Pages
             this.db = db;
         }
 
-        public void OnGet()
+        public void OnGet(Clothing clothing)
         {
             string userId;
-            
+
             if (User.Identity.IsAuthenticated)
             {
                 userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 Clothes = db.Clothes
                     .Where(c => c.OwnerId == userId);
+
+                if (clothing.ClothName != null)
+                {
+                    Clothing = clothing;
+                }
+
                 // filter
                 foreach (var item in Clothes)
                 {
                     if (!item.IsClean)
                     {
                         isDirty.Add(item);
-
                     }
                 }
                 if (isDirty.Count > 3)
@@ -56,16 +62,17 @@ namespace DotNetProject_Team5_Armoire.Pages
                 }
             }
         }
-        
+
         public void OnPost(int? id)
         {
             string userId;
             userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
             if (id > 0)
-                Clothes = db.Clothes.Where(c => c.CategoryId == id && c.OwnerId == userId );
+                Clothes = db.Clothes.Where(c => c.CategoryId == id && c.OwnerId == userId);
             else
                 Clothes = db.Clothes.Where(c => c.CategoryId > 0 && c.OwnerId == userId);
         }
-        
+
     }
 }
