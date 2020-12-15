@@ -14,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using GoogleReCaptcha.V3.Interface;
 using GoogleReCaptcha.V3;
+using a00893112s3clothesimages_S3_bucket.Data;
+using a00893112s3clothesimages_S3_bucket.Services;
 
 namespace DotNetProject_Team5_Armoire
 {
@@ -41,6 +43,10 @@ namespace DotNetProject_Team5_Armoire
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddHttpClient<ICaptchaValidator, GoogleReCaptchaValidator>();
+
+            services.Configure<ServiceConfiguration>(Configuration.GetSection("ServiceConfiguration"));
+            services.AddTransient<IAWSS3Service, AWSS3Service>();
+
             services.AddRazorPages();
         }
 

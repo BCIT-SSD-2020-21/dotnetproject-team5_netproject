@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using a00893112s3clothesimages_S3_bucket.Services;
 using DotNetProject_Team5_Armoire.Data;
 using DotNetProject_Team5_Armoire.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -81,13 +82,6 @@ namespace DotNetProject_Team5_Armoire.Pages.AddItem
                 string imageUri = null;
                 if (Upload != null)
                 {
-                    //var file = Path.Combine(_environment.ContentRootPath, "wwwroot/images", Upload.FileName);
-                    //imageUri = Path.Combine("/images", Upload.FileName);
-                    //using (var fileStream = new FileStream(file, FileMode.Create))
-                    //{
-                    //    await Upload.CopyToAsync(fileStream);
-                    //}
-
                     try
                     {
                         imageUri = await _awsS3Service.UploadFile(Upload);
