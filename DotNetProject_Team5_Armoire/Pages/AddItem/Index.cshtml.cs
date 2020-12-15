@@ -20,10 +20,12 @@ namespace DotNetProject_Team5_Armoire.Pages.AddItem
     {
         // connect to database
         protected readonly ClothDbContext db;
+        private readonly IAWSS3Service _awsS3Service;
 
         public Clothing Clothing { get; set; }
         public IQueryable<Clothing> Clothes { get; set; }
         public List<Clothing> isDirty = new List<Clothing>();
+
 
         public string msg = "";
         [BindProperty]
@@ -31,10 +33,11 @@ namespace DotNetProject_Team5_Armoire.Pages.AddItem
 
         private IHostingEnvironment _environment;
 
-        public IndexModel(ClothDbContext db, IHostingEnvironment environment)
+        public IndexModel(ClothDbContext db, IHostingEnvironment environment, IAWSS3Service awsS3Service)
         {
             this.db = db;
             _environment = environment;
+            _awsS3Service = awsS3Service;
         }
 
         public void OnGet(Clothing clothing)
@@ -74,11 +77,20 @@ namespace DotNetProject_Team5_Armoire.Pages.AddItem
                 string imageUri = null;
                 if (Upload != null)
                 {
-                    var file = Path.Combine(_environment.ContentRootPath, "wwwroot/images", Upload.FileName);
-                    imageUri = Path.Combine("/images", Upload.FileName);
-                    using (var fileStream = new FileStream(file, FileMode.Create))
+                    //var file = Path.Combine(_environment.ContentRootPath, "wwwroot/images", Upload.FileName);
+                    //imageUri = Path.Combine("/images", Upload.FileName);
+                    //using (var fileStream = new FileStream(file, FileMode.Create))
+                    //{
+                    //    await Upload.CopyToAsync(fileStream);
+                    //}
+
+                    try
                     {
-                        await Upload.CopyToAsync(fileStream);
+                        imageUri = await _awsS3Service.UploadFile(Upload);
+                    }
+                    catch (Exception e)
+                    {
+                        ModelState.AddModelError("S3 Upload", e.Message);
                     }
                 }
 
