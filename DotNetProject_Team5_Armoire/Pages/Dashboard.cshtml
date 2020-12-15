@@ -1,7 +1,6 @@
 ﻿@page
 @model DotNetProject_Team5_Armoire.Pages.DashboardModel
-@{
-}
+
 <div class="table-container">
     @if (Model.Clothing != null)
     {
@@ -10,13 +9,13 @@
             <table class="table">
                 <tbody>
                     <tr class="closet-item">
-                        <td scope="col"><img src=@Model.Clothing.PictureUri style="width:40px"; alt="No Image"/></td>
+                        <td scope="col"><img src=@Model.Clothing.PictureUri style="width:40px" ; alt="No Image" /></td>
                         <td scope="col">@Model.Clothing.ClothName</td>
                         <td scope="col">@(@Model.Clothing.CategoryId == 1 ? "Top" : "Bottom" )</td>
                         <td>@(@Model.Clothing.IsClean ? "Clean" : "Dirty")</td>
                         <td scope="col">
                             <a href="/AddItem/Index" class="a-button">Add More</a>
-                            <button id="ok-btn" class="a-button">Close</button> 
+                            <button id="ok-btn" class="a-button">Close</button>
                         </td>
                     </tr>
                 </tbody>
@@ -31,29 +30,22 @@
             <form method="post">
                 @if (Model.Clothes != null && Model.Clothes.Any())
                 {
-                    @*<select>
-                            @foreach (var categ in Model.Clothes.Select(x => x.CategoryId).Distinct())
-                            {
-                                @if (categ == 1)
-                                {
-                                    <option>Tops</option>
-                                    route = 1;
-                                }
-                                else
-                                {
-                                    <option>Bottoms</option>
-                                    route = 2;
-                                }
-                            }
-                        </select>*@
-                    <input type="submit" value="All" class="btn " asp-route-id="0" />
-                    <input type="submit" value="Tops" class="btn " asp-route-id="1" />
-                    <input type="submit" value="Bottoms" class="btn " asp-route-id="2" />
+                    <input type="submit" value="All" class="btn" asp-route-id="0" />
+                    @foreach (var categ in Model.Categories)
+                    {
+                        var id = HttpContext.Request.Query.ToDictionary(x => x.Key, x => x.Value.ToString());
 
-                 }
+                        if (id.ContainsKey("id"))
+                            id.Remove("id");
+                        id.Add("id", (categ.Id).ToString());
+
+                        <input type="submit" value="@categ.Name" class="btn" asp-all-route-data="id" />
+                    }
+                }
             </form>
         </div>
     </div>
+    <partial name="_pagination" for="@Model.PaginationInfo" />
     <table class="table">
         <thead>
             <tr>
@@ -68,25 +60,26 @@
 
             @if (Model.Clothes != null && Model.Clothes.Any())
             {
-                    @foreach (var clothing in Model.Clothes)
-                    {                     
-                        <tr>
-                            <td><img src=@clothing.PictureUri style="width:40px;"/></td>
-                            <td>@clothing.ClothName</td>
-                            <td>@(@clothing.CategoryId == 1 ? "Top" : "Bottom" )</td>
-                            <td>@(@clothing.IsClean ? "Clean" : "Dirty") </td>
-                            <td>
-                                <a asp-page="/EditItem/Index" class="btn btn-warning" asp-route-id="@clothing.Id">Edit</a>
-                            </td>
-                            <td>
-                                <a asp-page="/DeleteItem" class="btn btn-danger" asp-route-id="@clothing.Id">Delete</a>
-                            </td>
-                        </tr>
-                    }
+                @foreach (var clothing in Model.Clothes)
+                {
+                    <tr>
+                        <td><img src=@clothing.PictureUri style="width:40px;" /></td>
+                        <td>@clothing.ClothName</td>
+                        <td>@(@clothing.CategoryId == 1 ? "Top" : "Bottom" )</td>
+                        <td>@(@clothing.IsClean ? "Clean" : "Dirty") </td>
+                        <td>
+                            <a asp-page="/EditItem/Index" class="btn btn-warning" asp-route-id="@clothing.Id">Edit</a>
+                        </td>
+                        <td>
+                            <a asp-page="/DeleteItem" class="btn btn-danger" asp-route-id="@clothing.Id">Delete</a>
+                        </td>
+                    </tr>
                 }
-            </tbody>
-        </table>
-    </div>
+            }
+        </tbody>
+    </table>
+    <partial name="_pagination" for="@Model.PaginationInfo" />
+</div>
 
 <script>
     var div = document.getElementById("alert-div")
