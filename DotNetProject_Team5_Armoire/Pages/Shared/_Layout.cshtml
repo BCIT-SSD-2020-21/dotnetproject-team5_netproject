@@ -1,7 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,11 +41,6 @@
                         <ul class="navbar-nav flex-grow-0">
                             <li class="nav-item">
                                 <a class=@(@IsSectionDefined("Head") ? "nav-link text-white" : "nav-link text-dark") asp-area="" asp-page="/Index">About</a>
-                            </li>
-                            <li>
-                                <button type="button" class="@(@IsSectionDefined("Head") ? "btn  text-white" : "btn text-dark")" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Hello - message here">
-                                    <i class="fas fa-bell"></i>
-                                </button> |
                             </li>
                         </ul>
                     </div>
@@ -95,7 +89,7 @@
     </footer>
 
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @*<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>*@
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

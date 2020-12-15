@@ -1,6 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
+
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+
 
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
@@ -12,7 +14,16 @@
             <a class="nav-link" asp-area="" asp-page="/AddItem/Index">Add new Item</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-page="/Carousel">Dress Me</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+        </li>
+        <li>
+            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="@Model.msg">
+                <i class="fas fa-bell"></i>
+            </button> |
+            @*<partial name="_NotificationPartial" /> |*@
         </li>
         <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
