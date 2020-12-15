@@ -22,6 +22,10 @@ namespace DotNetProject_Team5_Armoire.Pages.AddItem
         protected readonly ClothDbContext db;
 
         public Clothing Clothing { get; set; }
+        public IQueryable<Clothing> Clothes { get; set; }
+        public List<Clothing> isDirty = new List<Clothing>();
+
+        public string msg = "";
         [BindProperty]
         public IFormFile Upload { get; set; }
 
@@ -33,18 +37,42 @@ namespace DotNetProject_Team5_Armoire.Pages.AddItem
             _environment = environment;
         }
 
-        public void OnGet()
+        public void OnGet(Clothing clothing)
         {
+            string userId;
+            if (User.Identity.IsAuthenticated)
+            {
+                userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                Clothes = db.Clothes
+                    .Where(c => c.OwnerId == userId);        
 
+                // filter
+                foreach (var item in Clothes)
+                {
+                    if (!item.IsClean)
+                    {
+                        isDirty.Add(item);
+
+                    }
+                }
+                if (isDirty.Count > 3)
+                {
+                    msg = $"You have {isDirty.Count} items in your dirty pile. Time to do laundry!";
+                }
+                else
+                {
+                    msg = "No new notifications at this time";
+                }
+            }
         }
 
         public async Task<IActionResult> OnPostUploadAsync(string clothingName, string category, bool isClean = false)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
 
                 string imageUri = null;
-                if(Upload != null)
+                if (Upload != null)
                 {
                     var file = Path.Combine(_environment.ContentRootPath, "wwwroot/images", Upload.FileName);
                     imageUri = Path.Combine("/images", Upload.FileName);
@@ -69,7 +97,7 @@ namespace DotNetProject_Team5_Armoire.Pages.AddItem
                 db.Clothes.Add(Clothing);
                 db.SaveChanges();
 
-                return RedirectToPage("/ItemAddedNotification/Index");
+                return RedirectToPage("/Dashboard", Clothing);
             }
 
             return Page();

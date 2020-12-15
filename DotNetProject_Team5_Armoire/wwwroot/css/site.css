@@ -63,11 +63,12 @@ body {
   /*margin-bottom: 60px; */
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+    border-top: 1px solid #dee2e6 !important;
 }
 
 
@@ -108,10 +109,10 @@ body {
     color: #FFF;
 }
 
-    a:hover {
-        text-decoration: none;
-        color: #000;
-    }
+a:hover {
+    text-decoration: none;
+    color: #000;
+}
 
 /*--------Register----------*/
 /*.register-page {
@@ -128,6 +129,16 @@ body {
 .table-container {
     padding: 100px 100px;
 } 
+
+#alert-div tr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#alert-div .a-button, #alert-div a {
+    min-width: 120px;
+}
 
 /*Add Item Styling*/
 .add-item-container {
@@ -154,7 +165,6 @@ body {
 }
 
 
-
 /*-------- CAROUSEL ----------*/
 .carousel-img {
     object-fit: cover;
@@ -173,17 +183,22 @@ body {
 .a-button {
     color: white;
     border: 1px solid #4F4F4F;
-    PADDING: 6px 20px;
+    padding: 6px 20px;
     margin: 10px;
     border-radius: 6px;
     background: #4F4F4F;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-i.far.fa-user {
+.fa-user {
     border: 1px solid white;
     border-radius: 4em;
     padding: 1em;
+}
+
+.btn:focus {
+    outline: 0;
+    box-shadow: none;
 }
 
 /*Confirm email */
