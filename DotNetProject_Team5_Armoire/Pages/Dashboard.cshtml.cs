@@ -21,6 +21,7 @@ namespace DotNetProject_Team5_Armoire.Pages
         public IQueryable<Clothing> Clothes { get; set; }
 
         public List<Clothing> isDirty = new List<Clothing>();
+        public List<Category> Categories = new List<Category>();
         public Clothing Clothing { get; set; }
 
         public string msg = "";
@@ -38,6 +39,8 @@ namespace DotNetProject_Team5_Armoire.Pages
         public void OnGet(Clothing clothing, int pageIndex)
         {
             string userId;
+
+            Categories = db.Categories.ToList();
 
             if (User.Identity.IsAuthenticated)
             {

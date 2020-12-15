@@ -1,7 +1,6 @@
 ﻿@page
 @model DotNetProject_Team5_Armoire.Pages.DashboardModel
-@{
-}
+
 <div class="table-container">
     @if (Model.Clothing != null)
     {
@@ -31,25 +30,17 @@
             <form method="post">
                 @if (Model.Clothes != null && Model.Clothes.Any())
                 {
-                    @*<select>
-                            @foreach (var categ in Model.Clothes.Select(x => x.CategoryId).Distinct())
-                            {
-                                @if (categ == 1)
-                                {
-                                    <option>Tops</option>
-                                    route = 1;
-                                }
-                                else
-                                {
-                                    <option>Bottoms</option>
-                                    route = 2;
-                                }
-                            }
-                        </select>*@
-                    <input type="submit" value="All" class="btn " asp-route-id="0" />
-                    <input type="submit" value="Tops" class="btn " asp-route-id="1" />
-                    <input type="submit" value="Bottoms" class="btn " asp-route-id="2" />
+                    <input type="submit" value="All" class="btn" asp-route-id="0" />
+                    @foreach (var categ in Model.Categories)
+                    {
+                        var id = HttpContext.Request.Query.ToDictionary(x => x.Key, x => x.Value.ToString());
 
+                        if (id.ContainsKey("id"))
+                            id.Remove("id");
+                        id.Add("id", (categ.Id).ToString());
+
+                        <input type="submit" value="@categ.Name" class="btn" asp-all-route-data="id" />
+                    }
                 }
             </form>
         </div>
