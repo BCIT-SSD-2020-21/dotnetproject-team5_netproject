@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using DotNetProject_Team5_Armoire.Data;
 using DotNetProject_Team5_Armoire.Models;
+using DotNetProject_Team5_Armoire.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -25,7 +26,10 @@ namespace DotNetProject_Team5_Armoire.Pages
         public string msg = "";
         public string popoverclass = "";
 
+        // ---- Pagination ----
         const int ITEMS_PER_PAGE = 3;
+        public PaginationInfoVM PaginationInfo { get; set; }
+
         public DashboardModel(ClothDbContext db)
         {
             this.db = db;
@@ -67,8 +71,15 @@ namespace DotNetProject_Team5_Armoire.Pages
             }
 
             // --------- PAGINATION ---------
+            int totalItems = Clothes.Count();
             Clothes = Clothes.Skip(pageIndex * ITEMS_PER_PAGE).Take(ITEMS_PER_PAGE);
-
+            PaginationInfo = new PaginationInfoVM()
+            {
+                PageIndex = pageIndex,
+                ItemsPerPage = Clothes.Count(),
+                TotalItems = totalItems,
+                TotalPages = int.Parse(Math.Ceiling(((decimal)totalItems / ITEMS_PER_PAGE)).ToString()),
+            };
         }
 
         public void OnPost(int? id)
