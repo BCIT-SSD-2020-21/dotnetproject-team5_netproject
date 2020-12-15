@@ -196,3 +196,13 @@ a:hover {
     padding: 100px 100px;
     text-align:center;
 }
+
+
+/*Logout */
+.logout {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    align-items: center;
+    padding-top: 100px;
+}
