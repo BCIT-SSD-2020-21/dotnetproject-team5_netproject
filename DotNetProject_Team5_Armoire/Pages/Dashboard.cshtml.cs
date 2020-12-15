@@ -23,6 +23,7 @@ namespace DotNetProject_Team5_Armoire.Pages
         public Clothing Clothing { get; set; }
 
         public string msg = "";
+        public string popoverclass = "";
 
         public DashboardModel(ClothDbContext db)
         {
@@ -55,10 +56,12 @@ namespace DotNetProject_Team5_Armoire.Pages
                 if (isDirty.Count > 3)
                 {
                     msg = $"You have {isDirty.Count} items in your dirty pile. Time to do laundry!";
+                    popoverclass = "fas fa-bell text-danger";
                 }
                 else
                 {
                     msg = "No new notifications at this time";
+                    popoverclass = "fas fa-bell";
                 }
             }
         }
