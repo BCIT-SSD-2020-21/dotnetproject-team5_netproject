@@ -25,12 +25,13 @@ namespace DotNetProject_Team5_Armoire.Pages
         public string msg = "";
         public string popoverclass = "";
 
+        const int ITEMS_PER_PAGE = 3;
         public DashboardModel(ClothDbContext db)
         {
             this.db = db;
         }
 
-        public void OnGet(Clothing clothing)
+        public void OnGet(Clothing clothing, int pageIndex)
         {
             string userId;
 
@@ -64,6 +65,10 @@ namespace DotNetProject_Team5_Armoire.Pages
                     popoverclass = "fas fa-bell";
                 }
             }
+
+            // --------- PAGINATION ---------
+            Clothes = Clothes.Skip(pageIndex * ITEMS_PER_PAGE).Take(ITEMS_PER_PAGE);
+
         }
 
         public void OnPost(int? id)
