@@ -6,7 +6,7 @@
     @if (Model.Clothing != null)
     {
         <div id="alert-div" class="alert alert-success" role="alert">
-            <h4>New clothing is successfully added!</h4>
+            <h4>New clothing successfully added!</h4>
             <table class="table">
                 <tbody>
                     <tr class="closet-item">
@@ -15,11 +15,11 @@
                         <td scope="col">@(@Model.Clothing.CategoryId == 1 ? "Top" : "Bottom" )</td>
                         <td>@(@Model.Clothing.IsClean ? "Clean" : "Dirty")</td>
                         <td scope="col">
-                            <button id="ok-btn" class="btn btn-primary">Ok</button>
+                            <button id="ok-btn" class="a-button">Ok</button> 
+                            <button class="a-button">Add More</button>
                         </td>
-                        <td scope="col">
-                            <button class="btn btn-primary">Add More</button>
-                        </td>
+
+ 
                     </tr>
                 </tbody>
             </table>
