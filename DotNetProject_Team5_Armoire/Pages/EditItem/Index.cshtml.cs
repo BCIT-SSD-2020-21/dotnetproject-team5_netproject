@@ -47,7 +47,7 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
             {
                 return NotFound();
             }
-
+           
             if (await TryUpdateModelAsync<Clothing>(
                 ClothToUpdate,
                 "ClothItem",

@@ -1,5 +1,6 @@
 ﻿@page
 @model DotNetProject_Team5_Armoire.Pages.EditItem.IndexModel
+
     <div class="table-container pt-0">
         <div class="w-75 mx-auto m-5">
             <h2>Edit Item</h2>
@@ -16,13 +17,15 @@
                                 <span asp-validation-for="ClothItem.ClothName" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="ClothItem.CategoryId" class="control-label"></label>
-                                <input asp-for="ClothItem.CategoryId" class="form-control" />
-                                <span asp-validation-for="ClothItem.CategoryId" class="text-danger"></span>
+                                    <label>Choose Category</label><br />
+                                    <select class="form-control" asp-for="ClothItem.CategoryId">
+                                        <option value="1">Top</option>
+                                        <option value="2">Bottom</option>
+                                    </select>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-check">
+                                <input type="checkbox" asp-for="ClothItem.IsClean" class="form-check-input" />
                                 <label asp-for="ClothItem.IsClean" class="control-label"></label>
-                                <input asp-for="ClothItem.IsClean" class="form-control" />
                                 <span asp-validation-for="ClothItem.IsClean" class="text-danger"></span>
                             </div>
 
