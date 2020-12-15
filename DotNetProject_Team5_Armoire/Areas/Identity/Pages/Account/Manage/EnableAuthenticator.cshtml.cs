@@ -32,6 +32,8 @@ namespace DotNetProject_Team5_Armoire.Areas.Identity.Pages.Account.Manage
         }
 
         public string SharedKey { get; set; }
+        public string msg = "";
+        public string popoverclass = "";
 
         public string AuthenticatorUri { get; set; }
 

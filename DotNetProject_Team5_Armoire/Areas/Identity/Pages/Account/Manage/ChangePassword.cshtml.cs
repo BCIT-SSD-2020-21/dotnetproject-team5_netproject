@@ -30,7 +30,8 @@ namespace DotNetProject_Team5_Armoire.Areas.Identity.Pages.Account.Manage
 
         [TempData]
         public string StatusMessage { get; set; }
-
+        public string msg = "";
+        public string popoverclass = "";
         public class InputModel
         {
             [Required]

@@ -18,6 +18,7 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
         public List<Clothing> ClothingList = new List<Clothing>();
         public List<Clothing> isDirty = new List<Clothing>();
         public string msg = "";
+        public string popoverclass = "";
 
         public IndexModel(ClothDbContext db)
         {
@@ -57,10 +58,12 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
             if (isDirty.Count > 3)
             {
                 msg = $"You have {isDirty.Count} items in your dirty pile. Time to do laundry!";
+                popoverclass = "fas fa-bell text-danger";
             }
             else
             {
                 msg = "No new notifications at this time";
+                popoverclass = "fas fa-bell";
             }
 
             return Page();

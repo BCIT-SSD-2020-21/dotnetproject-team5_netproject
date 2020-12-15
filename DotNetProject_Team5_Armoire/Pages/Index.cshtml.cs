@@ -16,7 +16,7 @@ namespace DotNetProject_Team5_Armoire.Pages
     {
         private readonly ClothDbContext _db;
         public string msg = "";
-
+        public string popoverclass = "";
         public IndexModel(ClothDbContext db)
         {
             _db = db ;
@@ -50,10 +50,12 @@ namespace DotNetProject_Team5_Armoire.Pages
                 if (isDirty.Count > 3)
                 {
                     msg = $"You have {isDirty.Count} items in your dirty pile. Time to do laundry!";
+                    popoverclass = "fas fa-bell text-danger";
                 }
                 else
                 {
                     msg = "No new notifications at this time";
+                    popoverclass = "fas fa-bell";
                 }
             }
         }

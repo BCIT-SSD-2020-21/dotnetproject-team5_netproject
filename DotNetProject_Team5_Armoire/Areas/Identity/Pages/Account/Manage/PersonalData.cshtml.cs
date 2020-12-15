@@ -19,6 +19,9 @@ namespace DotNetProject_Team5_Armoire.Areas.Identity.Pages.Account.Manage
             _logger = logger;
         }
 
+        public string msg = "";
+        public string popoverclass = "";
+
         public async Task<IActionResult> OnGet()
         {
             var user = await _userManager.GetUserAsync(User);
