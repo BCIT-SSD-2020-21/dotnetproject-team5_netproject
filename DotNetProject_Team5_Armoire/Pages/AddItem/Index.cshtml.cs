@@ -37,14 +37,15 @@ namespace DotNetProject_Team5_Armoire.Pages.AddItem
             _environment = environment;
         }
 
-        public void OnGet()
+        public void OnGet(Clothing clothing)
         {
             string userId;
             if (User.Identity.IsAuthenticated)
             {
                 userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 Clothes = db.Clothes
-                    .Where(c => c.OwnerId == userId);
+                    .Where(c => c.OwnerId == userId);        
+
                 // filter
                 foreach (var item in Clothes)
                 {
@@ -65,42 +66,42 @@ namespace DotNetProject_Team5_Armoire.Pages.AddItem
             }
         }
 
-        //public async Task<IActionResult> OnPostUploadAsync(string clothingName, string category, bool isClean = false)
-        //{
-        //    if(ModelState.IsValid)
-        //    {
+        public async Task<IActionResult> OnPostUploadAsync(string clothingName, string category, bool isClean = false)
+        {
+            if (ModelState.IsValid)
+            {
 
-        //        string imageUri = null;
-        //        if(Upload != null)
-        //        {
-        //            var file = Path.Combine(_environment.ContentRootPath, "wwwroot/images", Upload.FileName);
-        //            imageUri = Path.Combine("/images", Upload.FileName);
-        //            using (var fileStream = new FileStream(file, FileMode.Create))
-        //            {
-        //                await Upload.CopyToAsync(fileStream);
-        //            }
-        //        }
+                string imageUri = null;
+                if (Upload != null)
+                {
+                    var file = Path.Combine(_environment.ContentRootPath, "wwwroot/images", Upload.FileName);
+                    imageUri = Path.Combine("/images", Upload.FileName);
+                    using (var fileStream = new FileStream(file, FileMode.Create))
+                    {
+                        await Upload.CopyToAsync(fileStream);
+                    }
+                }
 
-        //        //get UserId
-        //        string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                //get UserId
+                string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-        //        var categoryId = category switch
-        //        {
-        //            "Top" => 1,
-        //            "Bottom" => 2,
-        //            _ => 1,
-        //        };
+                var categoryId = category switch
+                {
+                    "Top" => 1,
+                    "Bottom" => 2,
+                    _ => 1,
+                };
 
-        //        // Create new clothing object and save it to database
-        //        Clothing = new Clothing(userId, clothingName, isClean, imageUri, categoryId);
-        //        db.Clothes.Add(Clothing);
-        //        db.SaveChanges();
+                // Create new clothing object and save it to database
+                Clothing = new Clothing(userId, clothingName, isClean, imageUri, categoryId);
+                db.Clothes.Add(Clothing);
+                db.SaveChanges();
 
-        //        return RedirectToPage("/ItemAddedNotification/Index");
-        //    }
+                return RedirectToPage("/Dashboard", Clothing);
+            }
 
-        //    return Page();
-        //}
+            return Page();
+        }
 
     }
 }
