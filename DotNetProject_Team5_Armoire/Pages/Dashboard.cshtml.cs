@@ -80,6 +80,9 @@ namespace DotNetProject_Team5_Armoire.Pages
                 TotalItems = totalItems,
                 TotalPages = int.Parse(Math.Ceiling(((decimal)totalItems / ITEMS_PER_PAGE)).ToString()),
             };
+
+            PaginationInfo.Previous = PaginationInfo.PageIndex == 0 ? "is-disabled" : "";
+            PaginationInfo.Next = PaginationInfo.PageIndex == PaginationInfo.TotalPages - 1 ? "is-disabled" : "";
         }
 
         public void OnPost(int? id)

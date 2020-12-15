@@ -1,9 +1,8 @@
 ﻿@model ViewModels.PaginationInfoVM
-
-<div class="row">
-    <div class="pagination-nav-item col-md-4"><a asp-route-pageIndex=@(Model.PageIndex - 1)>Previous</a></div>
+<div class="row my-2">
+    <div class="pagination-nav-item col-md-4"><a class="@Model.Previous" asp-route-pageIndex=@(Model.PageIndex - 1)>Previous</a></div>
     <div class="pagination-nav-item col-md-4">
         <span>Showing @Model.ItemsPerPage of @Model.TotalItems items - Page @(Model.PageIndex + 1) - @Model.TotalPages</span>
     </div>
-    <div class="pagination-nav-item col-md-4"><a asp-route-pageIndex=@(Model.PageIndex + 1)>Next</a></div>
+    <div class="pagination-nav-item col-md-4"><a class="@Model.Next" asp-route-pageIndex=@(Model.PageIndex + 1)>Next</a></div>
 </div>
