@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using DotNetProject_Team5_Armoire.Data;
 using DotNetProject_Team5_Armoire.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -18,13 +21,19 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
         public List<Clothing> ClothingList = new List<Clothing>();
         public List<Clothing> isDirty = new List<Clothing>();
         public string msg = "";
+        public string popoverclass = "";
 
-        public IndexModel(ClothDbContext db)
+        [BindProperty]
+        public IFormFile Upload { get; set; }
+        private IHostingEnvironment _environment;
+
+        public IndexModel(ClothDbContext db, IHostingEnvironment environment)
         {
             _db = db;
+            _environment = environment;
         }
 
-        public Clothing ClothItem { get; set; }
+        public Clothing ClothItem { get; set; } = new Clothing();
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -57,10 +66,12 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
             if (isDirty.Count > 3)
             {
                 msg = $"You have {isDirty.Count} items in your dirty pile. Time to do laundry!";
+                popoverclass = "fas fa-bell text-danger";
             }
             else
             {
                 msg = "No new notifications at this time";
+                popoverclass = "fas fa-bell";
             }
 
             return Page();
@@ -74,7 +85,15 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
             {
                 return NotFound();
             }
-
+            if (Upload != null)
+            {
+                var file = Path.Combine(_environment.ContentRootPath, "wwwroot/images", Upload.FileName);
+                ClothToUpdate.PictureUri = Path.Combine("/images", Upload.FileName);
+                using (var fileStream = new FileStream(file, FileMode.Create))
+                {
+                    await Upload.CopyToAsync(fileStream);
+                }
+            }
             if (await TryUpdateModelAsync<Clothing>(
                 ClothToUpdate,
                 "ClothItem",

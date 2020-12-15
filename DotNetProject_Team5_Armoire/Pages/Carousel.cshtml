@@ -9,33 +9,37 @@
         <h3>@Model.Categories[0].Name</h3>
         @if (Model.Tops.Any())
         {
-            <div id="topsCarousel" class="carousel slide" data-bs-ride="carousel" style="margin: 0 auto;" data-bs-interval="false" data-bs-touch="true">
-                <div class="carousel-inner">
-                    @foreach (var product in Model.Tops)
-                    {
+<div id="topsCarousel" class="carousel slide" data-ride="carousel" style="margin: 0 auto;" data-interval="false" data-touch="true">
+    <div class="carousel-inner">
+        @foreach (var product in Model.Tops)
+        {
 
-                        if (product == Model.Tops[0])
-                        {
-                            <div class="carousel-item active">
-                                <img src=@product.PictureUri class="d-block carousel-img" alt="@product.ClothName">
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="carousel-item">
-                                <img src=@product.PictureUri class="d-block carousel-img" alt="@product.ClothName">
-                            </div>
-                        }
-
-                    }
+            if (product == Model.Tops[0])
+            {
+                <div class="carousel-item active">
+                    <img src=@product.PictureUri class="d-block carousel-img" alt="@product.ClothName">
                 </div>
-                <a class="carousel-control-prev a-button btn-size" href="#topsCarousel" role="button" data-bs-slide="prev">
-                    <span class="visually-hidden">Previous</span>
-                </a>
-                <a class="carousel-control-next a-button btn-size" href="#topsCarousel" role="button" data-bs-slide="next">
-                    <span class="visually-hidden">Next</span>
-                </a>
-            </div>
+            }
+            else
+            {
+                <div class="carousel-item">
+                    <img src=@product.PictureUri class="d-block carousel-img" alt="@product.ClothName">
+                </div>
+            }
+
+        }
+    </div>
+        @if (Model.Tops.Count != 1)
+        {
+            <a class="carousel-control-prev a-button btn-size" href="#topsCarousel" role="button" data-slide="prev">
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next a-button btn-size" href="#topsCarousel" role="button" data-slide="next">
+                <span class="visually-hidden">Next</span>
+            </a>
+
+        }
+    </div>
         }
         else
         {
@@ -51,31 +55,35 @@
         <h3>@Model.Categories[1].Name</h3>
         @if (Model.Bottoms.Any())
         {
-            <div id="bottomsCarousel" class="carousel slide" data-bs-ride="carousel" style="margin: 0 auto;" data-bs-interval="false" data-bs-touch="true">
-                <div class="carousel-inner">
-                    @foreach (var product in Model.Bottoms)
-                    {
-                        if (product == Model.Bottoms[0])
-                        {
-                            <div class="carousel-item active">
-                                <img src=@product.PictureUri class="d-block carousel-img" alt="@product.ClothName">
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="carousel-item">
-                                <img src=@product.PictureUri class="d-block carousel-img" alt="@product.ClothName">
-                            </div>
-                        }
-                    }
+<div id="bottomsCarousel" class="carousel slide" data-ride="carousel" style="margin: 0 auto;" data-interval="false" data-touch="true">
+    <div class="carousel-inner">
+        @foreach (var product in Model.Bottoms)
+        {
+            if (product == Model.Bottoms[0])
+            {
+                <div class="carousel-item active">
+                    <img src=@product.PictureUri class="d-block carousel-img" alt="@product.ClothName">
                 </div>
-                <a class="carousel-control-prev a-button btn-size" href="#bottomsCarousel" role="button" data-bs-slide="prev">
-                    <span class="visually-hidden">Previous</span>
-                </a>
-                <a class="carousel-control-next a-button btn-size" href="#bottomsCarousel" role="button" data-bs-slide="next">
-                    <span class="visually-hidden">Next</span>
-                </a>
-            </div>
+            }
+            else
+            {
+                <div class="carousel-item">
+                    <img src=@product.PictureUri class="d-block carousel-img" alt="@product.ClothName">
+                </div>
+            }
+        }
+    </div>
+    @if (Model.Bottoms.Count != 1)
+    {
+        <a class="carousel-control-prev a-button btn-size" href="#bottomsCarousel" role="button" data-slide="prev">
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next a-button btn-size" href="#bottomsCarousel" role="button" data-slide="next">
+            <span class="visually-hidden">Next</span>
+        </a>
+    }
+
+</div>
         }
         else
         {
