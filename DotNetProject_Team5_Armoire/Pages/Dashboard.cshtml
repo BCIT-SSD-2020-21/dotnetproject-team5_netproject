@@ -15,11 +15,9 @@
                         <td scope="col">@(@Model.Clothing.CategoryId == 1 ? "Top" : "Bottom" )</td>
                         <td>@(@Model.Clothing.IsClean ? "Clean" : "Dirty")</td>
                         <td scope="col">
-                            <button id="ok-btn" class="a-button">Ok</button> 
-                            <button class="a-button">Add More</button>
+                            <button id="ok-btn" class="a-button">Close</button> 
+                            <a href="/AddItem/Index"><button class="a-button">Add More</button></a>
                         </td>
-
- 
                     </tr>
                 </tbody>
             </table>
@@ -33,7 +31,6 @@
             <form method="post">
                 @if (Model.Clothes != null && Model.Clothes.Any())
                 {
-
                     @*<select>
                             @foreach (var categ in Model.Clothes.Select(x => x.CategoryId).Distinct())
                             {
@@ -47,7 +44,6 @@
                                     <option>Bottoms</option>
                                     route = 2;
                                 }
-
                             }
                         </select>*@
                     <input type="submit" value="All" class="btn " asp-route-id="0" />

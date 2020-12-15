@@ -136,7 +136,7 @@ a:hover {
     align-items: center;
 }
 
-#alert-div .a-button {
+#alert-div .a-button, #alert-div a {
     min-width: 120px;
 }
 
