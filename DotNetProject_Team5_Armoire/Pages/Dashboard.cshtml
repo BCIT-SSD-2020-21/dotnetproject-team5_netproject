@@ -2,98 +2,130 @@
 @model DotNetProject_Team5_Armoire.Pages.DashboardModel
 @{
 }
-    <div class="table-container">
-        <div class="row flex-row">
-            <div class="col">
-                <h2>Your Virtual Closet</h2>
-            </div>
-            <div>
-                <form method="post">
-                    @if (Model.Clothes != null && Model.Clothes.Any())
-                    {
-
-                        @*<select>
-                        @foreach (var categ in Model.Clothes.Select(x => x.CategoryId).Distinct())
-                        {
-                            @if (categ == 1)
-                            {
-                                <option>Tops</option>
-                                route = 1;
-                            }
-                            else
-                            {
-                                <option>Bottoms</option>
-                                route = 2;
-                            }
-
-                        }
-                    </select>*@
-              
-                        <input type="submit" value="All" class="btn " asp-route-id="0" />
-                        <input type="submit" value="Tops" class="btn " asp-route-id="1" />
-                        <input type="submit" value="Bottoms" class="btn " asp-route-id="2" />
-                
-                    }
-
-                </form>
-
-            </div>
-
+<div class="table-container">
+    @if (Model.Clothing != null)
+    {
+        <div id="alert-div" class="alert alert-success" role="alert">
+            <h4>Your New Item Successfully Added!</h4>
+            <table class="table">
+                <tbody>
+                    <tr class="closet-item">
+                        <td scope="col"><img src=@Model.Clothing.PictureUri style="width:40px"; alt="No Image"/></td>
+                        <td scope="col">@Model.Clothing.ClothName</td>
+                        <td scope="col">@Model.Clothing.CategoryId</td>
+                        <td>@Model.Clothing.IsClean</td>
+                        <td scope="col">
+                            <button id="ok-btn" class="btn btn-primary">Ok</button>
+                        </td>
+                        <td scope="col">
+                            <button class="btn btn-primary">Add More</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Image</th>
-                    <th scope="col">Clothing</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Cleanliness</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
 
+    }
+    <div class="row flex-row">
+        <div class="col">
+            <h2>Your Virtual Closet</h2>
+        </div>
+        <div>
+            <form method="post">
                 @if (Model.Clothes != null && Model.Clothes.Any())
                 {
-                   
 
-                    @foreach (var product in Model.Clothes)
-                    {
-                      
-                        <tr>
-                            <td><img src=@product.PictureUri style="width:40px" ; /></td>
-                            <td>@product.ClothName</td>
+                    @*<select>
+                            @foreach (var categ in Model.Clothes.Select(x => x.CategoryId).Distinct())
+                            {
+                                @if (categ == 1)
+                                {
+                                    <option>Tops</option>
+                                    route = 1;
+                                }
+                                else
+                                {
+                                    <option>Bottoms</option>
+                                    route = 2;
+                                }
 
-                            @if (product.CategoryId == 1)
-                            {
-                                <td>Top</td>
                             }
-                            else
-                            {
-                                <td>Bottom</td>
-                            }
+                        </select>*@
 
-                            @if (@product.IsClean)
-                            {
-                                <td>Clean</td>
-                            }
-                            else
-                            {
-                                <td>Not Clean</td>
-                            }
-                            <td>
-                                <button type="button" class="btn btn-warning">
-                                    <a asp-page="/EditItem/Index" asp-route-id="@product.Id">Edit</a>
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger">
-                                    <a asp-page="/DeleteItem" asp-route-id="@product.Id">Delete</a>
-                                </button>
-                            </td>
-                        </tr>
-                    }
+                    <input type="submit" value="All" class="btn " asp-route-id="0" />
+                    <input type="submit" value="Tops" class="btn " asp-route-id="1" />
+                    <input type="submit" value="Bottoms" class="btn " asp-route-id="2" />
+
                 }
-            </tbody>
-        </table>
-    </div>
 
+            </form>
+
+        </div>
+
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Clothing</th>
+                <th scope="col">Category</th>
+                <th scope="col">Cleanliness</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (Model.Clothes != null && Model.Clothes.Any())
+            {
+
+
+                @foreach (var product in Model.Clothes)
+                {
+
+                    <tr>
+                        <td><img src=@product.PictureUri style="width:40px"; alt="No Image" /></td>
+                        <td>@product.ClothName</td>
+
+                        @if (product.CategoryId == 1)
+                        {
+                            <td>Top</td>
+                        }
+                        else
+                        {
+                            <td>Bottom</td>
+                        }
+
+                        @if (@product.IsClean)
+                        {
+                            <td>Clean</td>
+                        }
+                        else
+                        {
+                            <td>Not Clean</td>
+                        }
+                        <td>
+                            <button type="button" class="btn btn-warning">
+                                <a asp-page="/EditItem/Index" asp-route-id="@product.Id">Edit</a>
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger">
+                                <a asp-page="/DeleteItem" asp-route-id="@product.Id">Delete</a>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+
+    var div = document.getElementById("alert-div")
+    var btn = document.getElementById("ok-btn");
+    btn.addEventListener("click", function () {
+        div.style.display = "none";
+    })
+</script>
