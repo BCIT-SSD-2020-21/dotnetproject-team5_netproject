@@ -26,7 +26,9 @@ namespace DotNetProject_Team5_Armoire.Pages
         public List<Clothing> Clothes = new List<Clothing>();
         public List<Clothing> Tops = new List<Clothing>();
         public List<Clothing> Bottoms = new List<Clothing>();
+        public List<Clothing> isDirty = new List<Clothing>();
 
+        public string msg = "";
 
         public async Task OnGet()
         {
@@ -39,17 +41,31 @@ namespace DotNetProject_Team5_Armoire.Pages
 
                 Categories = await _db.Categories.ToListAsync();
 
+                // filter
                 foreach (var item in Clothes)
                 {
                     if (item.CategoryId == 1)
                     {
                         Tops.Add(item);
-
                     }
                     else
                     {
                         Bottoms.Add(item);
                     }
+
+                    if (!item.IsClean)
+                    {
+                        isDirty.Add(item);
+
+                    }
+                }
+                if (isDirty.Count > 3)
+                {
+                    msg = $"You have {isDirty.Count} items in your dirty pile. Time to do laundry!";
+                }
+                else
+                {
+                    msg = "No new notifications at this time";
                 }
             }
 

@@ -28,10 +28,15 @@ namespace DotNetProject_Team5_Armoire.Pages
         public Clothing Clothing { get; set; }
         [BindProperty]
         public IFormFile Upload { get; set; }
+        // public IQueryable<Category> Categories { get; set; }
+        public List<Clothing> isDirty = new List<Clothing>();
+
+        public string msg = "";
 
         private IHostingEnvironment _environment;
 
         public DashboardModel(ClothDbContext db, IHostingEnvironment environment)
+        public DashboardModel(ClothDbContext db)
         {
             this.db = db;
             this._environment = environment;
@@ -42,11 +47,30 @@ namespace DotNetProject_Team5_Armoire.Pages
             string userId;
 
 
+            
             if (User.Identity.IsAuthenticated)
             {
                 userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 Clothes = db.Clothes
                     .Where(c => c.OwnerId == userId);
+                // filter
+                foreach (var item in Clothes)
+                {
+                    if (!item.IsClean)
+                    {
+                        isDirty.Add(item);
+
+                    }
+                }
+                if (isDirty.Count > 3)
+                {
+                    msg = $"You have {isDirty.Count} items in your dirty pile. Time to do laundry!";
+                }
+                else
+                {
+                    msg = "No new notifications at this time";
+                }
+            }
 
             }
 
@@ -59,12 +83,13 @@ namespace DotNetProject_Team5_Armoire.Pages
 
             //Category = db.Categories.Where(c => c.Id == 1 || c.Id == 2);
         }
-
-
+        
         public void OnPost(int? id)
         {
+            string userId;
+            userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (id > 0)
-                Clothes = db.Clothes.Where(c => c.CategoryId == id);
+                Clothes = db.Clothes.Where(c => c.CategoryId == id && c.OwnerId == userId );
             else
                 Clothes = db.Clothes.Where(c => c.CategoryId > 0);
 
@@ -105,6 +130,7 @@ namespace DotNetProject_Team5_Armoire.Pages
             }
 
             return Page();
+                Clothes = db.Clothes.Where(c => c.CategoryId > 0 && c.OwnerId == userId);
         }
 
     }

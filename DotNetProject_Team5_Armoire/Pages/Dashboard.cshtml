@@ -79,46 +79,26 @@
             {
 
 
-                @foreach (var product in Model.Clothes)
-                {
-
-                    <tr>
-                        <td><img src=@product.PictureUri style="width:40px"; alt="No Image" /></td>
-                        <td>@product.ClothName</td>
-
-                        @if (product.CategoryId == 1)
-                        {
-                            <td>Top</td>
-                        }
-                        else
-                        {
-                            <td>Bottom</td>
-                        }
-
-                        @if (@product.IsClean)
-                        {
-                            <td>Clean</td>
-                        }
-                        else
-                        {
-                            <td>Not Clean</td>
-                        }
-                        <td>
-                            <button type="button" class="btn btn-warning">
-                                <a asp-page="/EditItem/Index" asp-route-id="@product.Id">Edit</a>
-                            </button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-danger">
-                                <a asp-page="/DeleteItem" asp-route-id="@product.Id">Delete</a>
-                            </button>
-                        </td>
-                    </tr>
+                    @foreach (var product in Model.Clothes)
+                    {
+                      
+                        <tr>
+                            <td><img src=@product.PictureUri style="width:40px;"/></td>
+                            <td>@product.ClothName</td>
+                            <td>@(@product.CategoryId == 1 ? "Top" : "Bottom" )</td>
+                            <td>@(@product.IsClean ? "Clean" : "Not Clean") </td>
+                            <td>
+                                <a asp-page="/EditItem/Index" class="btn btn-warning" asp-route-id="@product.Id">Edit</a>
+                            </td>
+                            <td>
+                                <a asp-page="/DeleteItem" class="btn btn-danger" asp-route-id="@product.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
 
 
 <script>

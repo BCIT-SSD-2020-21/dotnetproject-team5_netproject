@@ -74,13 +74,15 @@ namespace DotNetProject_Team5_Armoire.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string captcha, string returnUrl = null)
         {
-            if (!await _captchaValidator.IsCaptchaPassedAsync(captcha))
+            var captchaValidation = await _captchaValidator.IsCaptchaPassedAsync(captcha);
+            
+            System.Threading.Thread.Sleep(2000);
+            if (!captchaValidation)
             {
                 ModelState.AddModelError("captcha", "Captcha validation failed");
                 return Page();
             }
-
-            System.Threading.Thread.Sleep(2000);
+           
             returnUrl = returnUrl ?? Url.Content("~/");
 
             if (ModelState.IsValid)
