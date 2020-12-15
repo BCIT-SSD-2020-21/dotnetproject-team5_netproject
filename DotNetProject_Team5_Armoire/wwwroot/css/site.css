@@ -20,7 +20,7 @@ a {
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #1b6ec2;
+  background-color: #666;
   border-color: #1861ac;
 }
 
@@ -215,4 +215,14 @@ a:hover {
     height: 80vh;
     align-items: center;
     padding-top: 100px;
+}
+
+
+/*Manage Account*/
+.manage-button{
+    background-color:#666;
+}
+
+.manage-page{
+    padding-top: 5em;
 }
