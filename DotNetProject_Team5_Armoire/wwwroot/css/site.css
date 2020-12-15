@@ -130,6 +130,16 @@ a:hover {
     padding: 100px 100px;
 } 
 
+#alert-div tr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#alert-div .a-button, #alert-div a {
+    min-width: 120px;
+}
+
 /*Add Item Styling*/
 .add-item-container {
     padding: 100px 100px;
