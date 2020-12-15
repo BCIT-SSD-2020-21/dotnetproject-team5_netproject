@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using DotNetProject_Team5_Armoire.Data;
+using DotNetProject_Team5_Armoire.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,13 +16,21 @@ namespace DotNetProject_Team5_Armoire.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly ClothDbContext _db;
+
+        public List<Clothing> ClothingList = new List<Clothing>();
+        public List<Clothing> isDirty = new List<Clothing>();
+        public string msg = "";
+        public string popoverclass = "";
 
         public IndexModel(
             UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<IdentityUser> signInManager,
+            ClothDbContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _db = db;
         }
 
         public string Username { get; set; }
@@ -52,6 +63,9 @@ namespace DotNetProject_Team5_Armoire.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnGetAsync()
         {
+            string userId;
+            userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
@@ -59,6 +73,28 @@ namespace DotNetProject_Team5_Armoire.Areas.Identity.Pages.Account.Manage
             }
 
             await LoadAsync(user);
+
+            ClothingList = _db.Clothes.Where(c => c.OwnerId == userId).ToList(); 
+            // filter
+            foreach (var item in ClothingList)
+            {
+                if (!item.IsClean)
+                {
+                    isDirty.Add(item);
+
+                }
+            }
+            if (isDirty.Count > 3)
+            {
+                msg = $"You have {isDirty.Count} items in your dirty pile. Time to do laundry!";
+                popoverclass = "fas fa-bell text-danger";
+            }
+            else
+            {
+                msg = "No new notifications at this time";
+                popoverclass = "fas fa-bell";
+            }
+
             return Page();
         }
 
