@@ -40,6 +40,8 @@ namespace DotNetProject_Team5_Armoire.Areas.Identity.Pages.Account.Manage
 
         [BindProperty]
         public InputModel Input { get; set; }
+        public string msg = "";
+        public string popoverclass = "";
 
         public class InputModel
         {
