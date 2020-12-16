@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using a00893112s3clothesimages_S3_bucket.Services;
 using DotNetProject_Team5_Armoire.Data;
 using DotNetProject_Team5_Armoire.Models;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +18,7 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
     public class IndexModel : PageModel
     {
         private readonly ClothDbContext _db;
+        private readonly IAWSS3Service _awsS3Service;
         public IQueryable<Clothing> Clothes { get; set; }
         public List<Clothing> ClothingList = new List<Clothing>();
         public List<Clothing> isDirty = new List<Clothing>();
@@ -25,12 +27,11 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
 
         [BindProperty]
         public IFormFile Upload { get; set; }
-        private IHostingEnvironment _environment;
 
-        public IndexModel(ClothDbContext db, IHostingEnvironment environment)
+        public IndexModel(ClothDbContext db, IAWSS3Service awsS3Service)
         {
             _db = db;
-            _environment = environment;
+            _awsS3Service = awsS3Service;
         }
 
         public Clothing ClothItem { get; set; } = new Clothing();
@@ -85,15 +86,19 @@ namespace DotNetProject_Team5_Armoire.Pages.EditItem
             {
                 return NotFound();
             }
+
             if (Upload != null)
             {
-                var file = Path.Combine(_environment.ContentRootPath, "wwwroot/images", Upload.FileName);
-                ClothToUpdate.PictureUri = Path.Combine("/images", Upload.FileName);
-                using (var fileStream = new FileStream(file, FileMode.Create))
+                try
                 {
-                    await Upload.CopyToAsync(fileStream);
+                    ClothToUpdate.PictureUri = await _awsS3Service.UploadFile(Upload);
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("S3 Upload", e.Message);
                 }
             }
+
             if (await TryUpdateModelAsync<Clothing>(
                 ClothToUpdate,
                 "ClothItem",
