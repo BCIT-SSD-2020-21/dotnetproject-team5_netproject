@@ -137,8 +137,10 @@ a:hover {
 .category-filters {
     display: flex;
     padding: 8px;
+    margin: auto;
+    width: max-content;
 }
-
+    
 .categ-btn {
     border: none;
     background: inherit;
@@ -157,6 +159,17 @@ a:hover {
 .pagination-nav-item {
     text-align: center;
 }
+
+.table {
+    border-bottom: 1px solid #dee2e6;
+}
+
+@media (max-width: 500px) {
+    .td-none {
+        display: none;
+    }
+}
+
 
 /*---------- ADD ITEM ----------*/
 .add-item-container {
