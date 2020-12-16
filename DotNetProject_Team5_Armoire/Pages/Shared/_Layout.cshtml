@@ -39,7 +39,7 @@
         <header>
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
                 <div class="container px-0">
-                    <a class=@(@IsSectionDefined("Head") ? "navbar-brand text-white" : "navbar-brand text-dark") asp-area="" asp-page="/Index">Armoire</a>
+                    <a class="navbar-brand" asp-area="" asp-page="/Index">Armoire</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -48,7 +48,7 @@
                         <partial name="_LoginPartial" />
                         <ul class="navbar-nav flex-grow-0">
                             <li class="nav-item">
-                                <a class=@(@IsSectionDefined("Head") ? "nav-link text-white" : "nav-link text-dark") asp-area="" asp-page="/Index">About</a>
+                                <a class="nav-link" asp-area="" asp-page="/Index">About</a>
                             </li>
                         </ul>
                     </div>
@@ -68,7 +68,7 @@
     </div>
 
 
-    <footer class="@(@IsSectionDefined("Head") ? "footer text-white" : "footer text-dark")">
+    <footer class="footer">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -87,8 +87,8 @@
                         }
                         else
                         {
-                            <li class="list-inline-item"><a asp-area="" asp-page="/Index" class="@(@IsSectionDefined("Head") ? "text-white" : "text-dark")">Terms</a></li>
-                            <li class="list-inline-item"><a asp-area="" asp-page="/Privacy" class="@(@IsSectionDefined("Head") ? "text-white" : "text-dark")">Privacy</a></li>
+                            <li class="list-inline-item"><a asp-area="" asp-page="/Index">Terms</a></li>
+                            <li class="list-inline-item"><a asp-area="" asp-page="/Privacy">Privacy</a></li>
                         }
                     </ul>
                 </div>
