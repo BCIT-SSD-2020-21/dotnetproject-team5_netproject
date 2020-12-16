@@ -118,7 +118,11 @@ a:hover {
 #alert-div .a-button, #alert-div a {
     min-width: 120px;
 }
-
+@media (max-width: 500px) {
+    .table-container {
+        padding: 30px 30px;
+    }
+}
 /*Add Item Styling*/
 .add-item-container {
     padding: 100px 100px;
@@ -130,6 +134,14 @@ a:hover {
 }
 .image-container {
     padding-top: 100px;
+}
+@media (max-width: 500px) {
+    .add-item-flex-container {
+        display: inline-block;
+    }
+    .image-container {
+        padding: 50px 100px;
+    }
 }
 
 /*Forgot Passwrod*/
