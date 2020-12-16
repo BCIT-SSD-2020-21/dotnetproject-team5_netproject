@@ -24,7 +24,7 @@ a {
   border-color: #1861ac;
 }
 
-/* Sticky footer styles
+/*footer styles
 -------------------------------------------------- */
 html {
   font-size: 14px;
@@ -51,40 +51,31 @@ button.accept-policy {
   line-height: inherit;
 }
 
-/* Sticky footer styles
+/*footer styles
 -------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  /*margin-bottom: 60px; */
-}
 .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    white-space: nowrap;
-    line-height: 60px; /* Vertically center the text there */
     border-top: 1px solid #dee2e6 !important;
 }
 
+.footer-copyright, .footer-social{
+    text-align:center;
+}
 
+@media (min-width: 768px) {
+    .footer-copyright{
+        text-align:left;
+    }
+
+    .footer-social{
+        text-align:right;
+    }
+}
 /*  ------- INDEX -------- */
-
-/*.landing {
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../images/hero-img-lg.jpg");
-    background-size: cover;
-    min-height: 100vh;*/
-    /*padding: 2em;*/
-/*}*/
-
 .welcome-wrapper {
     text-align: center;
     color: white;
     margin-top: 10%;
+    margin-bottom: 10%
 }
 
 .about {
@@ -99,12 +90,6 @@ body {
     background: rgba(255,255,255,0.7);
 }
 
-/*.login-page {
-    background: url("../images/login-lg.jpg");
-    background-size: cover;
-    min-height: 100vh;
-}*/
-
 .register-page a, .login-page a{
     color: #FFF;
 }
@@ -115,12 +100,6 @@ a:hover {
 }
 
 /*--------Register----------*/
-/*.register-page {
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../images/register-lg.jpg");
-    background-size: cover;
-    min-height: 100vh;
-}*/
-
 .register-form {
     background-color: rgba(255, 255, 255,0.6);
 }

@@ -8,7 +8,10 @@
         body {
             background: url("/images/register-lg.jpg");
             background-size: cover;
-            min-height: 100vh;
+        }
+
+        a, button, footer, .navbar {
+            color: white !important
         }
     </style>
 }
@@ -43,7 +46,7 @@
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                 </div>
                 <div class="form-group text-center">
-                    <button type="submit" class="btn btn-secondary w-25">Register</button>
+                    <button type="submit" class="btn btn-secondary w-50">Register</button>
                 </div>
                 <div class="form-group text-center">
                     <p>
