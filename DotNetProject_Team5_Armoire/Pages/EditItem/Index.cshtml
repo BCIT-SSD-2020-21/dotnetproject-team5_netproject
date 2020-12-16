@@ -35,10 +35,10 @@
                             <div>
                                 <input asp-for="Upload" type="file" onchange="Picture(this)">
                             </div>
-                            <span><img class="display" /></span>
+                            
                         </div>
                         <div class="col-md-6 text-center">
-                                <img src=@Model.ClothItem.PictureUri style="width:200px; height:200px" ; />
+                            <img src=@Model.ClothItem.PictureUri class="display" ; />
                         </div>
                     </div>
                     <div class="form-group pt-4 text-center">
@@ -63,5 +63,7 @@
             filename.readAsDataURL(input.files[0]);
         }
     }
+
+
 </script>
     }
