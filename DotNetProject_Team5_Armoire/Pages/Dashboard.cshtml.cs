@@ -88,7 +88,7 @@ namespace DotNetProject_Team5_Armoire.Pages
             PaginationInfo.Next = PaginationInfo.PageIndex == PaginationInfo.TotalPages - 1 ? "is-disabled" : "";
         }
 
-        public void OnPost(int? id)
+        public void OnPost(int pageIndex, int? id)
         {
             string userId;
             userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -97,6 +97,20 @@ namespace DotNetProject_Team5_Armoire.Pages
                 Clothes = db.Clothes.Where(c => c.CategoryId == id && c.OwnerId == userId);
             else
                 Clothes = db.Clothes.Where(c => c.CategoryId > 0 && c.OwnerId == userId);
+
+            // --------- PAGINATION ---------
+            int totalItems = Clothes.Count();
+            Clothes = Clothes.Skip(pageIndex * ITEMS_PER_PAGE).Take(ITEMS_PER_PAGE);
+            PaginationInfo = new PaginationInfoVM()
+            {
+                PageIndex = pageIndex,
+                ItemsPerPage = Clothes.Count(),
+                TotalItems = totalItems,
+                TotalPages = int.Parse(Math.Ceiling(((decimal)totalItems / ITEMS_PER_PAGE)).ToString()),
+            };
+
+            PaginationInfo.Previous = PaginationInfo.PageIndex == 0 ? "is-disabled" : "";
+            PaginationInfo.Next = PaginationInfo.PageIndex == PaginationInfo.TotalPages - 1 ? "is-disabled" : "";
         }
 
     }
