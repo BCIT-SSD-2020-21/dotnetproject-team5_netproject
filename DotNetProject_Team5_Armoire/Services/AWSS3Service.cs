@@ -58,43 +58,42 @@ namespace a00893112s3clothesimages_S3_bucket.Services
 
         public async void DeleteFile(string pictureUri)
         {
-
-            string[] separatingStrings = { "https://armoirevirtualcloset.s3.us-west-2.amazonaws.com/" };
-
-            string[] words = pictureUri.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
-
-            string key = "";
-
-            foreach (var word in words)
+            if (pictureUri != null && pictureUri != "")
             {
-                key = word;
-            }
 
-            try
-            {
-                var region = Amazon.RegionEndpoint.GetBySystemName(settings.AWSS3.BucketRegion);
-                var s3Client = new AmazonS3Client(settings.AWSS3.Key, settings.AWSS3.SecretKey, region);
+                string[] separatingStrings = { "https://armoirevirtualcloset.s3.us-west-2.amazonaws.com/" };
 
+                string[] words = pictureUri.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
 
-                DeleteObjectRequest request = new DeleteObjectRequest
+                string key = "";
+
+                foreach (var word in words)
                 {
-                    BucketName = settings.AWSS3.BucketName,
-                    Key = key
-                };
-
-                DeleteObjectResponse response = await s3Client.DeleteObjectAsync(request);
-                if(response != null)
-                {
-                    return;
-                } 
-                else
-                {
-                    throw new Exception();
+                    key = word;
                 }
-            }
-            catch (Exception e)
-            {
-                throw e;
+
+                try
+                {
+                    var region = Amazon.RegionEndpoint.GetBySystemName(settings.AWSS3.BucketRegion);
+                    var s3Client = new AmazonS3Client(settings.AWSS3.Key, settings.AWSS3.SecretKey, region);
+
+
+                    DeleteObjectRequest request = new DeleteObjectRequest
+                    {
+                        BucketName = settings.AWSS3.BucketName,
+                        Key = key
+                    };
+
+                    DeleteObjectResponse response = await s3Client.DeleteObjectAsync(request);
+                    if (response != null)
+                    {
+                        return;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
         }
     }
