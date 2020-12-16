@@ -226,3 +226,7 @@ a:hover {
 .manage-page{
     padding-top: 5em;
 }
+.is-disabled {
+    opacity: .5;
+    pointer-events: none;
+}
