@@ -118,7 +118,11 @@ a:hover {
 #alert-div .a-button, #alert-div a {
     min-width: 120px;
 }
-
+@media (max-width: 500px) {
+    .table-container{
+        padding: 30px 30px;
+    } 
+}
 /*Add Item Styling*/
 .add-item-container {
     padding: 100px 100px;
