@@ -23,50 +23,55 @@
         </div>
     }
     <div class="row flex-row">
-        <div class="col">
+        <div class="col-md-9">
             <h2>Your Virtual Closet</h2>
         </div>
-        <div>
-            <form>
-                <input type="hidden" value=null asp-for=CategoryId />
-                <button type="submit">All</button>
-            </form>
-            <partial name="_CategoryFilterPartial" />
-     </div>
+        <div class="col-md-3">
+            <div class="category-filters">
+                <form>
+                    <input type="hidden" value=null asp-for=CategoryId />
+                    <button type="submit" class="categ-btn">All</button>
+                </form>
+                <partial name="_CategoryFilterPartial" />
+            </div>
+        </div>
+        
     </div>
     <partial name="_pagination" for="@Model.PaginationInfo" />
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Image</th>
-                <th scope="col">Clothing</th>
-                <th scope="col">Category</th>
-                <th scope="col">Cleanliness</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Clothing</th>
+                    <th scope="col" class="td-none">Category</th>
+                    <th scope="col">Cleanliness</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
 
-            @if (Model.Clothes != null && Model.Clothes.Any())
-            {
-                @foreach (var clothing in Model.Clothes)
+                @if (Model.Clothes != null && Model.Clothes.Any())
                 {
-                    <tr>
-                        <td><img src=@clothing.PictureUri style="width:40px;" /></td>
-                        <td>@clothing.ClothName</td>
-                        <td>@(@clothing.CategoryId == 1 ? "Top" : "Bottom" )</td>
-                        <td>@(@clothing.IsClean ? "Clean" : "Dirty") </td>
-                        <td>
-                            <a asp-page="/EditItem/Index" class="btn btn-warning" asp-route-id="@clothing.Id">Edit</a>
-                        </td>
-                        <td>
-                            <a asp-page="/DeleteItem" class="btn btn-danger" asp-route-id="@clothing.Id">Delete</a>
-                        </td>
-                    </tr>
+                    @foreach (var clothing in Model.Clothes)
+                    {
+                        <tr>
+                            <td><img src=@clothing.PictureUri style="width:40px;" /></td>
+                            <td>@clothing.ClothName</td>
+                            <td class="td-none">@(@clothing.CategoryId == 1 ? "Top" : "Bottom" )</td>
+                            <td>@(@clothing.IsClean ? "Clean" : "Dirty") </td>
+                            <td>
+                                <a asp-page="/EditItem/Index" class="btn btn-warning" asp-route-id="@clothing.Id">Edit</a>
+                                <span style="color: #E5E5E5; margin: 0 5px;"> | </span>
+                                <a asp-page="/DeleteItem" class="btn btn-danger" asp-route-id="@clothing.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
+
     <partial name="_pagination" for="@Model.PaginationInfo" />
 </div>
 

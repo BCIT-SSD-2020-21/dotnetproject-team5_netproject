@@ -86,7 +86,7 @@ button.accept-policy {
     margin: 2em auto;
 }
 
-/*--------Login----------*/
+/*-------- LOGIN ----------*/
 .login-form {
     background: rgba(255,255,255,0.7);
 }
@@ -112,12 +112,12 @@ a:hover {
         width:100%;
     }
 }
-/*--------Register----------*/
+/*-------- REGISTER ----------*/
 .register-form {
     background-color: rgba(255, 255, 255,0.6);
 }
 
-/*Dashboard Table*/
+/*---------- DASHBOARD ----------*/
 .table-container {
     padding: 100px 100px;
 } 
@@ -136,7 +136,45 @@ a:hover {
         padding: 30px 30px;
     }
 }
-/*Add Item Styling*/
+
+.category-filters {
+    display: flex;
+    padding: 8px;
+    margin: auto;
+    width: max-content;
+}
+    
+.categ-btn {
+    border: none;
+    background: inherit;
+}
+
+.categ-btn:focus {
+    outline: none;
+}
+
+.top-btn {
+    border-right: 1px solid grey;
+    border-left: 1px solid grey;
+    margin: 0 3px;
+}
+
+.pagination-nav-item {
+    text-align: center;
+}
+
+.table {
+    border-bottom: 1px solid #dee2e6;
+}
+
+@media (max-width: 500px) {
+    .td-none {
+        display: none;
+    }
+}
+
+
+/*---------- ADD ITEM ----------*/
 .add-item-container {
     padding: 100px 100px;
     max-width:200%
@@ -157,7 +195,7 @@ a:hover {
     }
 }
 
-/*Forgot Passwrod*/
+/*---------- FORGOT PASSWORD ----------*/
 .forgot-password {
     padding: 100px 100px;
 }
@@ -172,7 +210,7 @@ a:hover {
 /*-------- CAROUSEL ----------*/
 .carousel-img {
     object-fit: cover;
-    height: 30em;
+    height: 20em;
     width: auto;
     margin: 0 auto;
 }
@@ -201,7 +239,7 @@ a:hover {
 }
 
 .btn:focus {
-    outline: 0;
+    outline: none;
     box-shadow: none;
 }
 
@@ -212,13 +250,14 @@ a:hover {
 }
 
 
-/*Logout */
+/*---------- LOGOUT ----------*/
 .logout {
     display: flex;
     flex-direction: column;
     height: 80vh;
     align-items: center;
     padding-top: 100px;
+    text-align: center
 }
 
 
