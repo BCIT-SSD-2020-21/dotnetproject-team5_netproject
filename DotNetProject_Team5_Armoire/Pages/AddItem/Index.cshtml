@@ -30,8 +30,8 @@
                         <label asp-for="Upload">Upload a clothing image</label>
                     </dt>
                     <dd>
-                        <input asp-for="Upload" type="file">
-                        <span></span>
+                        <input asp-for="Upload" type="file" onchange="Picture(this)">
+                        <span><img class="display" /></span>
                     </dd>
                 </dl>
                 <button asp-page-handler="Upload" type="submit" class="btn btn-primary">Submit</button>
@@ -45,5 +45,16 @@
     </div>
     @section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+    function Picture(input) {
+        if (input.files[0]) {
+            var filename = new FileReader();
+            filename.onload = function (clothpic) {
+                $('.display').attr('src', clothpic.target.result);
+            }
+            filename.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
     }
 }
