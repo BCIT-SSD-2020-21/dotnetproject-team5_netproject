@@ -102,6 +102,9 @@ a:hover {
 .login-background {
     width:50%;
 }
+.login-page {
+    height: 90vh;
+}
 
 
 @media (max-width: 500px) {
