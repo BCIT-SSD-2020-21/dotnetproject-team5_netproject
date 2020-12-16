@@ -34,12 +34,9 @@ namespace DotNetProject_Team5_Armoire.Pages.AddItem
         [BindProperty]
         public IFormFile Upload { get; set; }
 
-        private IHostingEnvironment _environment;
-
-        public IndexModel(ClothDbContext db, IHostingEnvironment environment, IAWSS3Service awsS3Service)
+        public IndexModel(ClothDbContext db, IAWSS3Service awsS3Service)
         {
             this.db = db;
-            _environment = environment;
             _awsS3Service = awsS3Service;
         }
 
