@@ -31,15 +31,8 @@
                 <input type="hidden" value=null asp-for=CategoryId />
                 <button type="submit">All</button>
             </form>
-            <form>
-                <input type="hidden" value=1 asp-for=CategoryId />
-                <button type="submit">Tops</button>
-            </form>
-            <form>
-                <input type="hidden" value=2 asp-for=CategoryId />
-                <button type="submit">Bottoms</button>
-            </form>
-        </div>
+            <partial name="_CategoryFilterPartial" />
+     </div>
     </div>
     <partial name="_pagination" for="@Model.PaginationInfo" />
     <table class="table">
