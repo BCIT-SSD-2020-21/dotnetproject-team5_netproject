@@ -4,6 +4,6 @@
 
 <form>
     <input type="hidden" value="@categ.Id" asp-for=CategoryId />
-    <button type="submit">@categ.Name</button>
+    <button type="submit" class="@(@categ.Id == 1 ? "categ-btn top-btn" : "categ-btn")">@categ.Name</button>
 </form>
 }
