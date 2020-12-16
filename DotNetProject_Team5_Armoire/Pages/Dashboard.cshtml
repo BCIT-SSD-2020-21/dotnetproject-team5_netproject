@@ -31,16 +31,8 @@
                 @if (Model.Clothes != null && Model.Clothes.Any())
                 {
                     <input type="submit" value="All" class="btn" asp-route-id="0" />
-                    @foreach (var categ in Model.Categories)
-                    {
-                        var id = HttpContext.Request.Query.ToDictionary(x => x.Key, x => x.Value.ToString());
-
-                        if (id.ContainsKey("id"))
-                            id.Remove("id");
-                        id.Add("id", (categ.Id).ToString());
-
-                        @*<input type="submit" value="@categ.Name" class="btn" asp-all-route-data="id" />*@
-                    }
+                    <input type="submit" value="Tops" class="btn" asp-route-id="1" />
+                    <input type="submit" value="Bottoms" class="btn" asp-route-id="2" />
                 }
             </form>
         </div>
