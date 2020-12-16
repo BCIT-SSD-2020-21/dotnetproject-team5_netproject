@@ -1,0 +1,9 @@
+﻿@model DashboardModel
+
+@foreach( var categ in Model.Categories){ 
+
+<form>
+    <input type="hidden" value="@categ.Id" asp-for=CategoryId />
+    <button type="submit">@categ.Name</button>
+</form>
+}

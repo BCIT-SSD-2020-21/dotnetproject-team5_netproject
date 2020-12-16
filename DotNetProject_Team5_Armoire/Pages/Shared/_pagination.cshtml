@@ -3,11 +3,11 @@
 @{
     var previous = Context.Request.Query.ToDictionary(x => x.Key, x => x.Value.ToString());
     var next = Context.Request.Query.ToDictionary(x => x.Key, x => x.Value.ToString());
-    if(previous.ContainsKey("id"))
-        previous.Remove("id");
+    //if(previous.ContainsKey("id"))
+    //    previous.Remove("id");
 
-    if (next.ContainsKey("id"))
-        next.Remove("id");
+    //if (next.ContainsKey("id"))
+    //    next.Remove("id");
 
     if (previous.ContainsKey("pageIndex"))
         previous.Remove("pageIndex");

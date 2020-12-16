@@ -27,15 +27,12 @@
             <h2>Your Virtual Closet</h2>
         </div>
         <div>
-            <form method="post">
-                @if (Model.Clothes != null && Model.Clothes.Any())
-                {
-                    <input type="submit" value="All" class="btn" asp-route-id="0" />
-                    <input type="submit" value="Tops" class="btn" asp-route-id="1" />
-                    <input type="submit" value="Bottoms" class="btn" asp-route-id="2" />
-                }
+            <form>
+                <input type="hidden" value=null asp-for=CategoryId />
+                <button type="submit">All</button>
             </form>
-        </div>
+            <partial name="_CategoryFilterPartial" />
+     </div>
     </div>
     <partial name="_pagination" for="@Model.PaginationInfo" />
     <table class="table">
