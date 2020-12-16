@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DotNetProject_Team5_Armoire.Data;
 using DotNetProject_Team5_Armoire.Models;
 using DotNetProject_Team5_Armoire.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,13 +14,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DotNetProject_Team5_Armoire.Pages
 {
+    [Authorize]
     public class DashboardModel : PageModel
     {
 
         //Access database
         protected readonly ClothDbContext db;
         public IQueryable<Clothing> Clothes { get; set; }
-
+        public int? CategoryId {get;set;}
         public List<Clothing> isDirty = new List<Clothing>();
         public List<Category> Categories = new List<Category>();
         public Clothing Clothing { get; set; }
@@ -36,19 +38,24 @@ namespace DotNetProject_Team5_Armoire.Pages
             this.db = db;
         }
 
-        public void OnGet(Clothing clothing, int pageIndex)
+        public void OnGet(Clothing clothing, int pageIndex, int? CategoryId)
         {
             string userId;
 
             Categories = db.Categories.ToList();
 
-            if (User.Identity.IsAuthenticated)
-            {
+            //if (User.Identity.IsAuthenticated)
+            //{
                 userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                
+                
+                if (CategoryId != null)
+                    Clothes = db.Clothes.Where(c => c.CategoryId == CategoryId && c.OwnerId == userId);
+                else
                 Clothes = db.Clothes
                     .Where(c => c.OwnerId == userId);
 
-                if (clothing.ClothName != null)
+            if (clothing.ClothName != null)
                 {
                     Clothing = clothing;
                 }
@@ -71,7 +78,7 @@ namespace DotNetProject_Team5_Armoire.Pages
                     msg = "No new notifications at this time";
                     popoverclass = "fas fa-bell";
                 }
-            }
+            //}
 
             // --------- PAGINATION ---------
             int totalItems = Clothes.Count();
@@ -82,36 +89,38 @@ namespace DotNetProject_Team5_Armoire.Pages
                 ItemsPerPage = Clothes.Count(),
                 TotalItems = totalItems,
                 TotalPages = int.Parse(Math.Ceiling(((decimal)totalItems / ITEMS_PER_PAGE)).ToString()),
+               
             };
 
             PaginationInfo.Previous = PaginationInfo.PageIndex == 0 ? "is-disabled" : "";
             PaginationInfo.Next = PaginationInfo.PageIndex == PaginationInfo.TotalPages - 1 ? "is-disabled" : "";
         }
 
-        public void OnPost(int pageIndex, int? id)
-        {
-            string userId;
-            userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        //public void OnPost(int pageIndex, int id)
+        //{
+        //    string userId;
+        //    userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            if (id > 0)
-                Clothes = db.Clothes.Where(c => c.CategoryId == id && c.OwnerId == userId);
-            else
-                Clothes = db.Clothes.Where(c => c.CategoryId > 0 && c.OwnerId == userId);
+        //    if (id > 0)
+        //        Clothes = db.Clothes.Where(c => c.CategoryId == id && c.OwnerId == userId);
+        //    else
+        //        Clothes = db.Clothes.Where(c => c.OwnerId == userId);
 
-            // --------- PAGINATION ---------
-            int totalItems = Clothes.Count();
-            Clothes = Clothes.Skip(pageIndex * ITEMS_PER_PAGE).Take(ITEMS_PER_PAGE);
-            PaginationInfo = new PaginationInfoVM()
-            {
-                PageIndex = pageIndex,
-                ItemsPerPage = Clothes.Count(),
-                TotalItems = totalItems,
-                TotalPages = int.Parse(Math.Ceiling(((decimal)totalItems / ITEMS_PER_PAGE)).ToString()),
-            };
+        //    // --------- PAGINATION ---------
+        //    int totalItems = Clothes.Count();
+        //    Clothes = Clothes.Skip(pageIndex * ITEMS_PER_PAGE).Take(ITEMS_PER_PAGE);
+        //    PaginationInfo = new PaginationInfoVM()
+        //    {
+        //        PageIndex = pageIndex,
+        //        ItemsPerPage = Clothes.Count(),
+        //        TotalItems = totalItems,
+        //        TotalPages = int.Parse(Math.Ceiling(((decimal)totalItems / ITEMS_PER_PAGE)).ToString()),
+        //        CategoryId = id
+        //    };
 
-            PaginationInfo.Previous = PaginationInfo.PageIndex == 0 ? "is-disabled" : "";
-            PaginationInfo.Next = PaginationInfo.PageIndex == PaginationInfo.TotalPages - 1 ? "is-disabled" : "";
-        }
+        //    PaginationInfo.Previous = PaginationInfo.PageIndex == 0 ? "is-disabled" : "";
+        //    PaginationInfo.Next = PaginationInfo.PageIndex == PaginationInfo.TotalPages - 1 ? "is-disabled" : "";
+        //}
 
     }
 }
