@@ -76,7 +76,7 @@ namespace DotNetProject_Team5_Armoire.Areas.Identity.Pages.Account
         {
             var captchaValidation = await _captchaValidator.IsCaptchaPassedAsync(captcha);
             
-            System.Threading.Thread.Sleep(2000);
+            System.Threading.Thread.Sleep(3000);
             if (!captchaValidation)
             {
                 ModelState.AddModelError("captcha", "Captcha validation failed");
