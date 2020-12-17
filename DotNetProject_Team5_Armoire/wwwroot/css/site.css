@@ -53,7 +53,22 @@ button.accept-policy {
 
 /*footer styles
 -------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
 .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
     border-top: 1px solid #dee2e6 !important;
 }
 
@@ -74,9 +89,8 @@ button.accept-policy {
 .welcome-wrapper {
     text-align: center;
     color: white;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    height :40vh;
+    margin-top:5%;
+    margin-bottom:10%;
 }
 
 .about {
@@ -102,10 +116,6 @@ a:hover {
 .login-background {
     width:50%;
 }
-.login-page {
-    height: 90vh;
-}
-
 
 @media (max-width: 500px) {
     .login-background {
