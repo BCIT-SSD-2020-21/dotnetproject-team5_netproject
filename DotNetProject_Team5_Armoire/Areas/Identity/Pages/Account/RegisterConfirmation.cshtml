@@ -1,7 +1,7 @@
 ﻿@page
 @model RegisterConfirmationModel
 @{
-    ViewData["Title"] = "Register confirmation";
+    ViewData["Title"] = "Registration Confirmation";
 }
 
 <div class="confirm-email-container">
@@ -10,7 +10,9 @@
         if (@Model.DisplayConfirmAccountLink)
         {
             <p>
-                <a id="confirm-link" href="@Model.EmailConfirmationUrl"><button>Click here to confirm your account</button></a>
+                <a id="confirm-link" href="@Model.EmailConfirmationUrl">
+                    <button class="btn btn-outline-secondary p-2">Click here to confirm your account</button>
+                </a>
             </p>
         }
         else
