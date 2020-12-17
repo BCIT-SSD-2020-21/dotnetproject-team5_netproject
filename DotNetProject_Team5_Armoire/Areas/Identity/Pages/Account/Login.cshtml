@@ -1,5 +1,4 @@
 ﻿@page
-@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 @model LoginModel
 
 @{
@@ -66,7 +65,6 @@
                     <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="text-color">Create an account</a>
                 </p>
             </div>
-            <input type="hidden" name="captcha" id="captchaV3Input" value="" />
         </form>
     </section>
 </div>
@@ -77,13 +75,6 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?render=@Configuration["RecaptchaV3:SiteKey"]"></script>
-    <script>
-    grecaptcha.ready(function() {
-        grecaptcha.execute('@Configuration["RecaptchaV3:SiteKey"]', { action: 'login' }).then(function (token) {
-            $("#captchaV3Input").val(token);
-        });
-    });
-    </script>
+    
 
 }

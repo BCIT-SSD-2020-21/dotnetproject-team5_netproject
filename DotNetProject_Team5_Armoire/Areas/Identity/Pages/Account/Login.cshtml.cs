@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using GoogleReCaptcha.V3.Interface;
 
 namespace DotNetProject_Team5_Armoire.Areas.Identity.Pages.Account
 {
@@ -19,16 +18,13 @@ namespace DotNetProject_Team5_Armoire.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-        private readonly ICaptchaValidator _captchaValidator;
         public LoginModel(SignInManager<IdentityUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager,
-            ICaptchaValidator captchaValidator)
+            UserManager<IdentityUser> userManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
-            _captchaValidator = captchaValidator;
         }
 
         [BindProperty]
@@ -74,14 +70,9 @@ namespace DotNetProject_Team5_Armoire.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string captcha, string returnUrl = null)
         {
-            var captchaValidation = await _captchaValidator.IsCaptchaPassedAsync(captcha);
             
             System.Threading.Thread.Sleep(3000);
-            if (!captchaValidation)
-            {
-                ModelState.AddModelError("captcha", "Captcha validation failed");
-                return Page();
-            }
+            
            
             returnUrl = returnUrl ?? Url.Content("/Carousel");
 
