@@ -27,15 +27,15 @@
                     <br />
                     <dl>
                         <dt>
-                            <label asp-for="Upload">Upload a clothing image</label>
+                            <label asp-for="Upload" >Upload a clothing image</label>
                         </dt>
                         <dd>
-                            <input asp-for="Upload" type="file" onchange="Picture(this)">
+                            <input asp-for="Upload" type="file" onchange="Picture(this)" style="width:100%; overflow:hidden">
                         </dd>
                     </dl>
                 </div>
                 <div class="col-md-6 text-center">
-                    <span><img class="display" /></span>
+                    <span><img class="display" style="max-width:250px"/></span>
                 </div>
                 <button asp-page-handler="Upload" type="submit" class="btn btn-primary mt-2">Submit</button>
             </div>
