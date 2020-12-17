@@ -1,7 +1,7 @@
 ﻿@page
 @model DotNetProject_Team5_Armoire.Pages.DashboardModel
 
-<div class="table-container">
+<div class="container pt-5">
     @if (Model.Clothing != null)
     {
         <div id="alert-div" class="alert alert-success" role="alert">
@@ -37,7 +37,9 @@
         </div>
         
     </div>
+    <br />
     <partial name="_pagination" for="@Model.PaginationInfo" />
+    <br />
     <div class="row">
         <table class="table">
             <thead>

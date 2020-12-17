@@ -15,6 +15,10 @@
             body {
                 background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url("/images/hero-img-lg.jpg");
                 background-size: cover;
+                height: 500px;
+                background-attachment: fixed;
+                background-position: center;
+                background-repeat: no-repeat;
             }
 
            a, button, footer, .navbar{
@@ -23,26 +27,27 @@
             
         </style>
     }
-    <div class="welcome-wrapper">
-        <div>
-            Welcome to
-            <h1>Armoire</h1>
-        </div>
-        @if (SignInManager.IsSignedIn(User))
-        {
-
-            <a asp-page="/Carousel" class="nav-link text-white">Carousel</a>
-            <a class="nav-link text-white" asp-page="/Dashboard">Dashboard</a>
-        }
-        else
-        {
-            <div>
-                <a class="text-white" asp-area="Identity" asp-page="/Account/Register">Register</a> | <a class="text-white" asp-area="Identity" asp-page="/Account/Login">Login</a>
-            </div>
-            <div class="about">
-                Keep an inventory of your clothes virtually and let us help you cut your decision making time down.
-            </div>
-        }
-
+<div class="welcome-wrapper">
+    <div>
+        Welcome to
+        <h1>Armoire</h1>
     </div>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <div class="about">
+            Keep an inventory of your clothes virtually and let us help you cut your decision making time down.
+        </div>
+
+    }
+    else
+    {
+        <div>
+            <a class="text-white" asp-area="Identity" asp-page="/Account/Register">Register</a> | <a class="text-white" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </div>
+        <div class="about">
+            Keep an inventory of your clothes virtually and let us help you cut your decision making time down.
+        </div>
+    }
+
+</div>
 </div>

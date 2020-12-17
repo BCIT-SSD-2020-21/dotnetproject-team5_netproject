@@ -9,37 +9,37 @@
         <h3>@Model.Categories[0].Name</h3>
         @if (Model.Tops.Any())
         {
-<div id="topsCarousel" class="carousel slide" data-ride="carousel" style="margin: 0 auto;" data-interval="false" data-touch="true">
-    <div class="carousel-inner">
-        @foreach (var product in Model.Tops)
-        {
+            <div id="topsCarousel" class="carousel slide" data-ride="carousel" style="margin: 0 auto;" data-interval="false" data-touch="true">
+                <div class="carousel-inner">
+                    @foreach (var product in Model.Tops)
+                    {
 
-            if (product == Model.Tops[0])
-            {
-                <div class="carousel-item active">
-                    <img src=@product.PictureUri class="d-block carousel-img" alt="@product.ClothName">
+                        if (product == Model.Tops[0])
+                        {
+                            <div class="carousel-item active">
+                                <img src=@product.PictureUri class="d-block carousel-img" alt="@product.ClothName">
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="carousel-item">
+                                <img src=@product.PictureUri class="d-block carousel-img" alt="@product.ClothName">
+                            </div>
+                        }
+
+                    }
                 </div>
-            }
-            else
-            {
-                <div class="carousel-item">
-                    <img src=@product.PictureUri class="d-block carousel-img" alt="@product.ClothName">
-                </div>
-            }
+                @if (Model.Tops.Count != 1)
+                {
+                    <a class="carousel-control-prev a-button btn-size" href="#topsCarousel" role="button" data-slide="prev">
+                        <span class="visually-hidden">Previous</span>
+                    </a>
+                    <a class="carousel-control-next a-button btn-size" href="#topsCarousel" role="button" data-slide="next">
+                        <span class="visually-hidden">Next</span>
+                    </a>
 
-        }
-    </div>
-        @if (Model.Tops.Count != 1)
-        {
-            <a class="carousel-control-prev a-button btn-size" href="#topsCarousel" role="button" data-slide="prev">
-                <span class="visually-hidden">Previous</span>
-            </a>
-            <a class="carousel-control-next a-button btn-size" href="#topsCarousel" role="button" data-slide="next">
-                <span class="visually-hidden">Next</span>
-            </a>
-
-        }
-    </div>
+                }
+            </div>
         }
         else
         {
@@ -47,43 +47,43 @@
                 <h4>You have no @Model.Categories[0].Name.ToLower() in your closet!</h4>
                 <a asp-page="/AddItem/Index" class="a-button">Add item</a>
             </div>
-           
+
         }
 
-        <br/>
+        <br />
         @* ------------- BOTTOMS ------------- *@
         <h3>@Model.Categories[1].Name</h3>
         @if (Model.Bottoms.Any())
         {
-<div id="bottomsCarousel" class="carousel slide" data-ride="carousel" style="margin: 0 auto;" data-interval="false" data-touch="true">
-    <div class="carousel-inner">
-        @foreach (var product in Model.Bottoms)
-        {
-            if (product == Model.Bottoms[0])
-            {
-                <div class="carousel-item active">
-                    <img src=@product.PictureUri class="d-block carousel-img" alt="@product.ClothName">
+            <div id="bottomsCarousel" class="carousel slide" data-ride="carousel" style="margin: 0 auto;" data-interval="false" data-touch="true">
+                <div class="carousel-inner">
+                    @foreach (var product in Model.Bottoms)
+                    {
+                        if (product == Model.Bottoms[0])
+                        {
+                            <div class="carousel-item active">
+                                <img src=@product.PictureUri class="d-block carousel-img" alt="@product.ClothName">
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="carousel-item">
+                                <img src=@product.PictureUri class="d-block carousel-img" alt="@product.ClothName">
+                            </div>
+                        }
+                    }
                 </div>
-            }
-            else
-            {
-                <div class="carousel-item">
-                    <img src=@product.PictureUri class="d-block carousel-img" alt="@product.ClothName">
-                </div>
-            }
-        }
-    </div>
-    @if (Model.Bottoms.Count != 1)
-    {
-        <a class="carousel-control-prev a-button btn-size" href="#bottomsCarousel" role="button" data-slide="prev">
-            <span class="visually-hidden">Previous</span>
-        </a>
-        <a class="carousel-control-next a-button btn-size" href="#bottomsCarousel" role="button" data-slide="next">
-            <span class="visually-hidden">Next</span>
-        </a>
-    }
+                @if (Model.Bottoms.Count != 1)
+                {
+                    <a class="carousel-control-prev a-button btn-size" href="#bottomsCarousel" role="button" data-slide="prev">
+                        <span class="visually-hidden">Previous</span>
+                    </a>
+                    <a class="carousel-control-next a-button btn-size" href="#bottomsCarousel" role="button" data-slide="next">
+                        <span class="visually-hidden">Next</span>
+                    </a>
+                }
 
-</div>
+            </div>
         }
         else
         {
@@ -91,10 +91,34 @@
                 <h4>You have no @Model.Categories[1].Name.ToLower() in your closet!</h4>
                 <a asp-page="/AddItem/Index" class="a-button">Add item</a>
             </div>
-            
+
         }
-        <br/>
-        <button>Select</button>
+        <br />
+        
+        <!-- Button trigger modal -->
+        <button type="button" class="btn a-button" data-toggle="modal" data-target="#exampleModal">
+            Select
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Your clothes are selected for today!
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     }
     else
     {

@@ -83,7 +83,7 @@ namespace DotNetProject_Team5_Armoire.Areas.Identity.Pages.Account
                 return Page();
             }
            
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl = returnUrl ?? Url.Content("/Carousel");
 
             if (ModelState.IsValid)
             {
