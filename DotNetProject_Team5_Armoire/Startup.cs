@@ -42,7 +42,7 @@ namespace DotNetProject_Team5_Armoire
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddHttpClient<ICaptchaValidator, GoogleReCaptchaValidator>();
+            
 
             services.Configure<ServiceConfiguration>(Configuration.GetSection("ServiceConfiguration"));
             services.AddTransient<IAWSS3Service, AWSS3Service>();
