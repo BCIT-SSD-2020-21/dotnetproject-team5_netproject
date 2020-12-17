@@ -61,7 +61,7 @@ namespace a00893112s3clothesimages_S3_bucket.Services
             if (pictureUri != null && pictureUri != "")
             {
 
-                string[] separatingStrings = { "https://armoirevirtualcloset.s3.us-west-2.amazonaws.com/" };
+                string[] separatingStrings = { $"https://{settings.AWSS3.BucketName}.s3.{settings.AWSS3.BucketRegion}.amazonaws.com/" };
 
                 string[] words = pictureUri.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
 
